@@ -17,7 +17,13 @@ class ToyFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name'=>fake()->sentence,
+            'colour'=>fake()->word,
+            'size'=>fake()->word,
+            'type'=>fake()->word,
+            'toy_image'=>fake()->imageUrl,
+            'created_at'=> now(),
+            'updated_at'=> now(),
         ];
     }
 }
