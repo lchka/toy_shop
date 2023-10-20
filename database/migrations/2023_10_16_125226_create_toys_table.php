@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('toys', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('description');
             $table->string('colour');
             $table->string('size');
             $table->string('type');

@@ -18,6 +18,7 @@ class ToyFactory extends Factory
     {
         return [
             'name'=>fake()->sentence,
+            'description'=>fake()->paragraph,
             'colour'=>fake()->word,
             'size'=>fake()->word,
             'type'=>fake()->word,

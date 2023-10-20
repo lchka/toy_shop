@@ -11,6 +11,7 @@ class Toy extends Model
     protected $fillable = [
 
         'name',
+        'description',
         'colour',
         'size',
         'type',

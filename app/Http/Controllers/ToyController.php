@@ -16,12 +16,16 @@ class ToyController extends Controller
         return view('toys.index', compact('toys'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
+    public function show($id)
+    {
+        $toy = Toy::find($id);
+        return view('toys.show')->with('toy', $toy);
+    }
+  
     public function create()
     {
-        //
+        return view ('toys.create');
     }
 
     /**
@@ -35,10 +39,7 @@ class ToyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.

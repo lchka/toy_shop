@@ -13,7 +13,7 @@
         <nav>
             <ul>
                 <li><a href="{{ route('toys.index') }}">Home</a></li>
-                <li> <a href="{{ route('toys.create') }}">Create a New Toy</a> </li>
+                <li> <a href="{{ route('toys.create') }}">Add New Toy</a> </li>
             </ul>
         </nav>
     </header>
