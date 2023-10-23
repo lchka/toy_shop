@@ -15,7 +15,8 @@
                           <tr>
                             <td rowspan="6">
                                 <!-- use the asset function, access the file $book->book_image in the folder storage/images -->
-                                <img src="{{asset('storage/images/' . $toy->toy_image) }}" width="150" />
+                                <!-- 'storage/images/' . replace this before $toy to have imaegs taken from folder  -->
+                                <img src="{{asset( $toy->toy_image) }}" width="150" />
                             </td>
                             </tr>
                             <tr>

@@ -19,6 +19,9 @@
                         class="w-full"
                         autocomplete="off"
                         :value="@old('name')"></x-text-input>
+                        @error('name')
+                    <span class="text-red-500">{{ $message }}</span>
+                        @enderror
 
                     <x-text-input
                         type="text"
@@ -26,7 +29,24 @@
                         field="colour"
                         placeholder="colour..."
                         class="w-full mt-6"
-                        :value="@old('colour')"></x-text-input>
+                        :value="@old('colour')">
+                    </x-text-input>
+
+                    <!-- ugly version of select but validates erros and loops colour enum  should make a similar design if drop down already isnt-->
+
+                    <!-- <select
+                                name="colour" id="colour" class="form-control {{ $errors->has('colour') ? 'is-invalid' : '' }}">
+                        <option value="" selected >Select Colour</option>
+                        @foreach(['red', 'green', 'mixed', 'black', 'white', 'orange', 'purple', 'blue', 'yellow', 'pink', 'brown'] as $colour)
+                            <option value="{{ $colour }}" {{ old('colour') === $colour ? 'selected' : '' }}>{{ ucfirst($colour) }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('colour'))
+                        <span class="invalid-feedback">
+                            {{ $errors->first('colour') }}
+                        </span>
+                    @endif -->
+
 
                     <!-- I created a new component called textarea, you will need to do the same to using the x-textarea component -->
                     <x-textarea
@@ -47,7 +67,7 @@
                         :value="@old('toy_image')">>
                     </x-file-input>
 
-                    <x-primary-button class="mt-6">Toy</x-primary-button>
+                    <x-primary-button class="mt-6">Create Toy</x-primary-button>
                 </form>
             </div>
         </div>

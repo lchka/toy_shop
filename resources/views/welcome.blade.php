@@ -34,7 +34,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header">Anne's Book Store.</div>
+                            <div class="card-header">Laura's Pet toy's Shop!</div>
             
                             <div class="card-body">
                                 <p>

@@ -33,7 +33,7 @@ class ToyController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required | min:4 | max:20',
+            'name' => 'required | min:4 | max:20 | alpha',
             'colour' =>'required',
             'size' =>'required',
             'type' =>'required',
