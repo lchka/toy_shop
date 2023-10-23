@@ -36,7 +36,8 @@ class ToyController extends Controller
             'name' => 'required | min:4 | max:20',
             'colour' =>'required',
             'size' =>'required',
-            'type' =>'required'
+            'type' =>'required',
+            'description' =>'required'
         ]);
         
         Toy::create([
