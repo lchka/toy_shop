@@ -10,6 +10,8 @@ class ToyController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     
     public function index()
     {
         $toys = Toy::all();
@@ -32,7 +34,9 @@ class ToyController extends Controller
     {
         $request->validate([
             'name' => 'required | min:4 | max:20',
-            'colour' =>'required | min:3 | max:20'
+            'colour' =>'required',
+            'size' =>'required',
+            'type' =>'required'
         ]);
         
         Toy::create([
