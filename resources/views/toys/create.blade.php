@@ -1,52 +1,54 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Create Toy') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    <h3 class="text-center">Create Toy</h3>
-    <form action="{{ route('toys.store') }}" method="post">
-        @csrf
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                <form action="{{ route('toys.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <x-text-input
+                        type="text"
+                        name="name"
+                        field="name"
+                        placeholder="Name"
+                        class="w-full"
+                        autocomplete="off"
+                        :value="@old('name')"></x-text-input>
 
-        <!-- name -->
+                    <x-text-input
+                        type="text"
+                        name="colour"
+                        field="colour"
+                        placeholder="colour..."
+                        class="w-full mt-6"
+                        :value="@old('colour')"></x-text-input>
 
-        <div class="form-group">
-            <label for="name">Toy Name</label>
-            <input type="text" name="name" id="name" class="
-            form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" 
-            value="{{ old('name') }}" placeholder="Enter Name">
-            @if($errors->has('name'))
-                <span class="invalid-feedback">
-                    {{ $errors->first('name') }}
-                </span>
-            @endif
+                    <!-- I created a new component called textarea, you will need to do the same to using the x-textarea component -->
+                    <x-textarea
+                        name="description"
+                        rows="10"
+                        field="description"
+                        placeholder="Description..."
+                        class="w-full mt-6"
+                        :value="@old('description')">
+                    </x-textarea>
+                  
+                    <x-file-input
+                        type="file"
+                        name="toy_image"
+                        placeholder="Toy"
+                        class="w-full mt-6"
+                        field="toy_image"
+                        :value="@old('toy_image')">>
+                    </x-file-input>
+
+                    <x-primary-button class="mt-6">Toy</x-primary-button>
+                </form>
+            </div>
         </div>
-
-        <!-- colour -->
-
-        <div class="form-group">
-            <label for="colour">Toy Colour</label>
-            <input type="dr" name="colour" id="colour" class="
-            form-control {{ $errors->has('colour') ? 'is-invalid' : '' }}" 
-            value="{{ old('colour') }}" placeholder="Enter Colour">
-            @if($errors->has('colour'))
-                <span class="invalid-feedback">
-                    {{ $errors->first('colour') }}
-                </span>
-            @endif
-        </div>
-
-        <!-- description -->
-
-        <div class="form-group">
-            <label for="body">Toy Description</label>
-            <textarea name="description" id="description" rows="4" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" placeholder="Enter Toy Description">{{ old('description') }}</textarea>
-            @if($errors->has('description')) {{-- <-check if we have a validation error --}}
-                <span class="invalid-feedback">
-                    {{ $errors->first('description') }} {{-- <- Display the First validation error --}}
-                </span>
-            @endif
-        </div>
-
-        <!-- create -->
-
-        <button type="submit" class="btn btn-primary">Create</button>
-    </form>
-@endsection
+    </div>
+</x-app-layout>

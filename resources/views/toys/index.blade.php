@@ -1,38 +1,35 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('All Toys') }}
+        </h2>
+    </x-slot>
 
-@extends('layouts.app')
-
-@section('content')
-
-<div class="container">
-    
-    <h1>All Toys</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Colour</th>
-                <th>Type</th>
-                <th>Size</th>
-                <th>Image</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($toys as $toy)
-            <tr>
-                <td> <a href="{{ route('toys.show', $toy) }}"> {{ $toy->name }} </a></td>
-                <td>{{$toy->colour}} </td>
-                <td>{{$toy->type}} </td>
-                <td>{{$toy->size}} </td>
-                <td>@if ($toy->toy_image)
-                        <img src="{{ $toy->toy_image }}"
-                        alt="{{ $toy->title }}" width="100"
-                     @else 
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          
+            <a href="{{ route('toys.create') }}" class="btn-link btn-lg mb-2">Add a Toy</a>
+            @forelse ($toys as $toy)
+                <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                    <h2 class="font-bold text-2xl">
+                    <a href="{{ route('toys.show', $toy) }}">{{ $toy->name }}</a>
+                    </h2>
+                    <p class="mt-2">
+                        {{ $toy->colour }}
+                        {{$toy->description}}
+                        @if ($toy->toy_image)
+                        <img src="{{ $toy->toy_image }}" 
+                        alt="{{ $toy->name }}" width="100">
+                    @else
                         No Image
                     @endif
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>D
-</div>
-@endsection
+                    </p>
+
+                </div>
+            @empty
+            <p>No books</p>
+            @endforelse
+            
+        </div>
+    </div>
+</x-app-layout>
