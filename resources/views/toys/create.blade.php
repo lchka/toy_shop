@@ -1,4 +1,4 @@
-
+<!-- still dont think this is pushing into the database need to check my back-up -->
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -23,29 +23,58 @@
                     <span class="text-red-500">{{ $message }}</span>
                         @enderror
 
-                    <x-text-input
+
+                        <x-text-input
+                        type="text"
+                        name="type"
+                        field="type"
+                        placeholder="Type"
+                        class="w-full mt-6"
+                        autocomplete="off"
+                        :value="@old('type')"></x-text-input>
+                        @error('type')
+                    <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+
+                    <!-- original version of validation -->
+
+                    <!-- <x-text-input
                         type="text"
                         name="colour"
                         field="colour"
                         placeholder="colour..."
                         class="w-full mt-6"
                         :value="@old('colour')">
-                    </x-text-input>
+                    </x-text-input> -->
 
                     <!-- ugly version of select but validates erros and loops colour enum  should make a similar design if drop down already isnt-->
+                    <!-- made a similar design and placed the foreach of the colours there -->
+                    <!-- cant pass through the options here, bus tbe declared as an array in my component, not sure why
+                    chatgpt doesn't know either -->
 
-                    <!-- <select
-                                name="colour" id="colour" class="form-control {{ $errors->has('colour') ? 'is-invalid' : '' }}">
-                        <option value="" selected >Select Colour</option>
-                        @foreach(['red', 'green', 'mixed', 'black', 'white', 'orange', 'purple', 'blue', 'yellow', 'pink', 'brown'] as $colour)
-                            <option value="{{ $colour }}" {{ old('colour') === $colour ? 'selected' : '' }}>{{ ucfirst($colour) }}</option>
-                        @endforeach
-                    </select>
-                    @if($errors->has('colour'))
-                        <span class="invalid-feedback">
-                            {{ $errors->first('colour') }}
-                        </span>
-                    @endif -->
+                    <x-select
+                        name="colour" 
+                        id="colour" 
+                        field="colour"
+                        class="w-full mt-6"
+                        :value="@old('colour')" 
+                        ></x-select>
+
+                        @error('colour')
+                        <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    
+                        <x-select-size
+                        name="size" 
+                        id="size" 
+                        field="size"
+                        class="w-full mt-6"
+                        :value="@old('size')" 
+                        ></x-select-size>
+
+                        @error('size')
+                        <span class="text-red-500">{{ $message }}</span>
+                        @enderror
 
 
                     <!-- I created a new component called textarea, you will need to do the same to using the x-textarea component -->
@@ -57,6 +86,9 @@
                         class="w-full mt-6"
                         :value="@old('description')">
                     </x-textarea>
+                    @error('description')
+                        <span class="text-red-500">{{ $message }}</span>
+                        @enderror
                   
                     <x-file-input
                         type="file"
@@ -66,6 +98,9 @@
                         field="toy_image"
                         :value="@old('toy_image')">>
                     </x-file-input>
+                    @error('toy_image')
+                        <span class="text-red-500">{{ $message }}</span>
+                        @enderror
 
                     <x-primary-button class="mt-6">Create Toy</x-primary-button>
                 </form>

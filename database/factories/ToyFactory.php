@@ -21,7 +21,7 @@ class ToyFactory extends Factory
             'description'=>fake()->paragraph,
             'colour'=>fake()->randomElement(['red', 'green', 'mixed','black','white','orange','purple','blue','yellow','pink','brown']),
             'size'=>fake()->randomElement(['small', 'medium', 'large']),//cant use enum for fake/faker, must use randomElement
-            'type'=>fake()->randomElement(['training','rope','bone','stick','stuffed']),
+            'type'=>fake()->word,
             'toy_image'=>fake()->imageUrl,
             'created_at'=> now(),
             'updated_at'=> now(),
