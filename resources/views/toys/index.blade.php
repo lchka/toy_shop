@@ -8,12 +8,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           
-            <a href="{{ route('toys.create') }}" class="btn-link btn-lg mb-2">Add a Toy</a>
+            
             @forelse ($toys as $toy)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2 class="font-bold text-2xl">
+
+                    <!-- my link to the show -->
+
                     <a href="{{ route('toys.show', $toy) }}">{{ $toy->name }}</a>
                     </h2>
+
+<!-- should be displaying all these in the index, isnt displaying colour suddenly -->
+
                     <p class="mt-2">
                         {{ $toy->colour }}
                         {{$toy->description}}
@@ -27,7 +33,7 @@
 
                 </div>
             @empty
-            <p>No books</p>
+            <p>No Toys</p>
             @endforelse
             
         </div>
