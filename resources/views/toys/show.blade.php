@@ -1,7 +1,11 @@
-<!-- needs to be commented -->
+<!-- html layout for show page -->
+<title>Lili's Show for Pet Toy Store</title>
 
 
 <x-app-layout>
+
+<!-- this is used to create the header Dashboard which is displayed on the page -->
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Dashboard
@@ -17,7 +21,9 @@
                         <tbody>
                           <tr>
                             <td rowspan="6">
-                                <!-- use the asset function, access the file $book->book_image in the folder storage/images -->
+                        
+                            <!-- pushes the images from the storage folder and displayes it when the unique/specific id is chosen. -->
+
                                 <!-- 'storage/images/' . replace this before $toy to have imaegs taken from folder  -->
                                 <img src="{{asset( $toy->toy_image) }}" width="150" />
                             </td>

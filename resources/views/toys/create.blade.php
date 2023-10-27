@@ -1,3 +1,6 @@
+<title>Lili's Create for Pet Toy Store</title>
+
+
 <!-- creates a template for the create section of the dashboard, once this is validated in factory it is pushed into the view and displays it in the index.-->
 <x-app-layout>
     <x-slot name="header">
@@ -9,6 +12,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+
+<!-- allows for the input to have enctpye is the encoding tpye, and the multipart means that the upload can be split into smaller files so its faster to process -->
+
                 <form action="{{ route('toys.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
@@ -49,9 +55,11 @@
 
 
                     <x-select
+                        type="select"
                         name="colour" 
                         id="colour" 
                         field="colour"
+                        
                         class="w-full mt-6"
                         :value="@old('colour')" 
                         ></x-select>
@@ -65,6 +73,7 @@
 
 
                         <x-select-size
+                        type="select"
                         name="size" 
                         id="size" 
                         field="size"
@@ -80,13 +89,14 @@
 
                     <!-- creates a create for the description textarea -->
                     <x-textarea
+                        type="text"
                         name="description"
                         rows="10"
                         field="description"
                         placeholder="Description..."
                         class="w-full mt-6"
-                        :value="@old('description')">
-                    </x-textarea>
+                        :value="@old('description')"        
+                     ></x-textarea>
                     @error('description')
                         <span class="text-red-500">{{ $message }}</span>
                         @enderror

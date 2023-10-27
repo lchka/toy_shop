@@ -19,7 +19,6 @@ class ToyController extends Controller
         return view('toys.index', compact('toys'));
     }
 
-
     // shows the singular toy entity by pulling it by the individual id which is the linked in index by title 
 
     public function show($id)
@@ -28,31 +27,45 @@ class ToyController extends Controller
         return view('toys.show')->with('toy', $toy);
     }
 
-    // s
+    // this creates function is used to show the view called toy.create which is the form for using the storing functiona and pushing and displaying the database
 
     public function create()
     {
         return view('toys.create');
     }
-
+    
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required | min:4 | max:20 | alpha',
-            'colour' =>'required | in:value1,value2,value3',
+            'name' => 'required | min:4 | max:25 ',
+            'colour' =>'required', //these are enums and they arent accepting, in: item1,item2, proabaly due to the datatype set.
             'size' =>'required',
-            'type' =>'required',
-            'description' =>'required | max:20',
-            'toy_image'=>'required | max:2048 | image | mimes:jpeg, png, jpg'
+            'type' =>'required | min:4 | max:25 | alpha',
+            'description' =>'required | max:2058',
+            'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
+           
+            
         ]);
         
+        if ($request->hasFile('toy_image')){
+            $image = $request->file('toy_image');
+            $imageName = time() . '.' . $image->extension();
+
+            $image->storeAs('public/toys' , $imageName);
+            $toy_image_name = 'storage/toys/' . $imageName;
+        }
+
+
+        
+// this create is for taking the input placed into these individual create form, which is then pushed into the Toy model, then into the database and then placed in the view of index and show
+
         Toy::create([
             'name'=>$request->name,
-            'description'=>"Test Decsription",
-            'colour'=>"Test Colour",
-            'size'=>"Test Size",
-            'type'=>"Test Type",
-            'toy_image'=>"Test img",
+            'description'=>$request->description,
+            'colour'=>$request->colour,
+            'size'=>$request->size,
+            'type'=>$request->type,
+            'toy_image'=>$toy_image_name,
             'created_at' =>now(),
             'updated_at'=>now()
         ]);

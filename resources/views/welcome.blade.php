@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Anne's Book Store</title>
+        <title>Lili's Pet Toy Store</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

@@ -8,8 +8,8 @@ seems like a waste of time, id rather create 3 files for my select boxes -->
     <select {!! $attributes->merge(['class' => 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300
     focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md
     shadow-sm']) !!}>
-    <option value="" selected>Select Colour</option>
-    @foreach(['red', 'green', 'mixed', 'black', 'white', 'orange', 'purple', 'blue', 'yellow', 'pink', 'brown'] as $colour)
+    <option value="" selected>Select Colour</option> 
+    @foreach(['red', 'green', 'mixed','black','white','orange','purple','blue','yellow','pink','brown'] as $colour)
         <option value="{{ $colour }}" {{ old('colour') === $colour ? 'selected' : '' }}>{{ ucfirst($colour) }}</option>
     @endforeach
     </select>
