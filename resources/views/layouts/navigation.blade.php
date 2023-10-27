@@ -1,3 +1,6 @@
+
+
+
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,11 +14,16 @@
                 </div>
 
                 <!-- Navigation Links -->
+
+                <!-- shows the button for main dashboard -->
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <!-- shows the button for create a new toy -->
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('toys.create')" :active="request()->routeIs('toys.create')">
@@ -23,6 +31,8 @@
                     </x-nav-link>
                 </div>
                 
+                <!-- shows the button to view all toys in the main index -->
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('toys.index')" :active="request()->routeIs('toys.index')">
                         {{ __('All toys') }}

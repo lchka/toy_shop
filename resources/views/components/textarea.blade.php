@@ -1,4 +1,4 @@
-<!-- resources/views/livewire/x-textarea.blade.php -->
+<!-- creates a textarea design that can be re-usable in different views and models. -->
 <div>
     <textarea
  

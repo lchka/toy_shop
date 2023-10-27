@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * creates the fake data that is passed from the seeder through a migration
      */
     public function up()
     {

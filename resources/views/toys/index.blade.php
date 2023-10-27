@@ -18,18 +18,18 @@
                     <a href="{{ route('toys.show', $toy) }}">{{ $toy->name }}</a>
                     </h2>
 
-<!-- should be displaying all these in the index, isnt displaying colour suddenly -->
+<!-- should be displaying all these in the index-->
 
                     <p class="mt-2">
-                        {{ $toy->colour }}
-                        {{$toy->description}}
-                        @if ($toy->toy_image)
+                        <p>Toy Colour: {{ $toy->colour }}</p>
+                        <p>Toy Description: {{$toy->description}}</p>
+                       <p> @if ($toy->toy_image)
                         <img src="{{ $toy->toy_image }}" 
                         alt="{{ $toy->name }}" width="100">
                     @else
                         No Image
                     @endif
-                    </p>
+                    </p></p>
 
                 </div>
             @empty

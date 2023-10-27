@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ToyFactory extends Factory
 {
+    
+    /**  Creates our model 'toy' datatypes, which give meaning to the attributes*/
     /**
-     * Define the model's default state.
+    
      *
      * @return array<string, mixed>
      */

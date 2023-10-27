@@ -11,6 +11,7 @@ class ToyController extends Controller
      * Display a listing of the resource.
      */
 
+    //  shows the index of 'all toys' by accessing the model and pushing the fake db onto the front end
      
     public function index()
     {
@@ -19,11 +20,15 @@ class ToyController extends Controller
     }
 
 
+    // shows the singular toy entity by pulling it by the individual id which is the linked in index by title 
+
     public function show($id)
     {
         $toy = Toy::find($id);
         return view('toys.show')->with('toy', $toy);
     }
+
+    // s
 
     public function create()
     {
@@ -34,10 +39,11 @@ class ToyController extends Controller
     {
         $request->validate([
             'name' => 'required | min:4 | max:20 | alpha',
-            'colour' =>'required',
+            'colour' =>'required | in:value1,value2,value3',
             'size' =>'required',
             'type' =>'required',
-            'description' =>'required'
+            'description' =>'required | max:20',
+            'toy_image'=>'required | max:2048 | image | mimes:jpeg, png, jpg'
         ]);
         
         Toy::create([

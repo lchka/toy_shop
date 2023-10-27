@@ -1,4 +1,4 @@
-<!-- still dont think this is pushing into the database need to check my back-up -->
+<!-- creates a template for the create section of the dashboard, once this is validated in factory it is pushed into the view and displays it in the index.-->
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -11,6 +11,9 @@
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <form action="{{ route('toys.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
+
+<!-- creates a create for the name input -->
+
                     <x-text-input
                         type="text"
                         name="name"
@@ -23,6 +26,10 @@
                     <span class="text-red-500">{{ $message }}</span>
                         @enderror
 
+                        <!-- using the component text-input it pulls the design and displays it with the correct attributes -->
+
+
+                        <!-- creates a create for the type input -->
 
                         <x-text-input
                         type="text"
@@ -36,21 +43,10 @@
                     <span class="text-red-500">{{ $message }}</span>
                         @enderror
 
-                    <!-- original version of validation -->
+                   <!-- using the component text-input it pulls the design and displays it with the correct attributes -->
 
-                    <!-- <x-text-input
-                        type="text"
-                        name="colour"
-                        field="colour"
-                        placeholder="colour..."
-                        class="w-full mt-6"
-                        :value="@old('colour')">
-                    </x-text-input> -->
+                        <!-- creates a create for the colour select -->
 
-                    <!-- ugly version of select but validates erros and loops colour enum  should make a similar design if drop down already isnt-->
-                    <!-- made a similar design and placed the foreach of the colours there -->
-                    <!-- cant pass through the options here, bus tbe declared as an array in my component, not sure why
-                    chatgpt doesn't know either -->
 
                     <x-select
                         name="colour" 
@@ -63,7 +59,11 @@
                         @error('colour')
                         <span class="text-red-500">{{ $message }}</span>
                         @enderror
-                    
+                     <!-- using the component select it pulls the design and displays it with the correct attributes -->
+
+                        <!-- creates a create for the size select -->
+
+
                         <x-select-size
                         name="size" 
                         id="size" 
@@ -75,9 +75,10 @@
                         @error('size')
                         <span class="text-red-500">{{ $message }}</span>
                         @enderror
+                        <!-- using the component select-size it pulls the design and displays it with the correct attributes -->
 
 
-                    <!-- I created a new component called textarea, you will need to do the same to using the x-textarea component -->
+                    <!-- creates a create for the description textarea -->
                     <x-textarea
                         name="description"
                         rows="10"
@@ -89,11 +90,16 @@
                     @error('description')
                         <span class="text-red-500">{{ $message }}</span>
                         @enderror
+
+                    <!-- using the component textarea it pulls the design and displays it with the correct attributes -->
+
+
+                    <!-- creates a create for the image file input -->
                   
                     <x-file-input
                         type="file"
                         name="toy_image"
-                        placeholder="Toy"
+                        placeholder="Toy Image"
                         class="w-full mt-6"
                         field="toy_image"
                         :value="@old('toy_image')">>
@@ -101,6 +107,7 @@
                     @error('toy_image')
                         <span class="text-red-500">{{ $message }}</span>
                         @enderror
+                     <!-- using the component file-input it pulls the design and displays it with the correct attributes -->
 
                     <x-primary-button class="mt-6">Create Toy</x-primary-button>
                 </form>

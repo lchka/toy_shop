@@ -1,5 +1,7 @@
-
-
+<!-- select option for create, providing the select for the options.
+This is done by creating a foreach loop which loops through the array and provides
+these individual array items as select options.
+Which are then displayed in create and edit, as a dropdown -->
 <!-- in order to not have to pass colours options here, I'd have to make a new App\View\Componet folder (that is seperate to the components folder) and extend component into it
 seems like a waste of time, id rather create 3 files for my select boxes -->
 <div>
