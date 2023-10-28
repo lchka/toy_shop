@@ -97,8 +97,8 @@
                         class="w-full mt-6"
                         :value="@old('description')"        
                      ></x-textarea>
-                    @error('description')
-                        <span class="text-red-500">{{ $message }}</span>
+                     @error('description')
+                    <span class="text-red-500">{{ $message }}</span>
                         @enderror
 
                     <!-- using the component textarea it pulls the design and displays it with the correct attributes -->

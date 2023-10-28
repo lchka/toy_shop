@@ -15,6 +15,14 @@
     <!-- Page Content -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+        <!-- x-alert-success is the component created in order to show success messages -->
+
+        <x-alert-success>
+            {{session('success')}}
+        </x-alert-success>
+
+
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <table class="table table-hover">
@@ -44,6 +52,9 @@
                             </tr></p>
                         </tbody>
                     </table>
+
+                    <!-- button to go to the edit page of the specific column -->
+                    <x-primary-button><a href="{{ route('toys.edit', $toy) }}">Edit</a> </x-primary-button>
                 </div>
             </div>
         </div>
