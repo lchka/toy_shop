@@ -52,11 +52,13 @@
                    <!-- using the component text-input it pulls the design and displays it with the correct attributes -->
 
                         <!-- creates an edit for the colour select -->
-<!-- colour and size @old isnt working, something to do with how laravel handles components that are selects. When x-select is changed to systems select and the foreach is passed in.(PASTED BELOW) the old works, description isnt being remebered either -->
+<!-- colour and size @old isnt working, something to do with how laravel handles components that are selects. When x-select is changed to systems select and the foreach is passed in where the :valur is.(PASTED BELOW) the old works, description isnt being remebered either -->
 <!-- <option value="" selected>Select Colour</option> 
     @foreach(['red', 'green', 'mixed','black','white','orange','purple','blue','yellow','pink','brown'] as $colour)
         <option value="{{ $colour }}" {{ old('colour') === $colour ? 'selected' : '' }}>{{ ucfirst($colour) }}</option>
     @endforeach -->
+
+<!-- to solve this i propose that in the css file we target select in the edit file, give it the chosen design just dont touch it -->
 
                     <x-select
                         type="select"
