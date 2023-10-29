@@ -1,3 +1,15 @@
+ <!--ERROR WAS SOLVED: colour and size @old isnt working, something to do with how laravel handles components that are selects. When x-select is changed to systems select and the foreach is passed in where the :value is.(PASTED BELOW) the old works, description isnt being remebered either -->
+                    <!-- <option value="" selected>Select Colour</option> 
+                        @foreach(['red', 'green', 'mixed','black','white','orange','purple','blue','yellow','pink','brown'] as $colour)
+                            <option value="{{ $colour }}" {{ old('colour') === $colour ? 'selected' : '' }}>{{ ucfirst($colour) }}</option>
+                        @endforeach -->
+
+                    <!-- SOLVED: to solve this i propose that in the css file we target select in the edit file, give it the chosen design just dont touch it -->
+
+
+
+
+
 <title>Lili's Edit for Pet Toy Store</title>
 
 
@@ -13,13 +25,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
 
-<!-- enctpye is the encoding tpye, and the multipart means that the upload can be split into smaller files so its faster to process -->
-<form action="{{ route('toys.update', $toy) }}" method="post" enctype="multipart/form-data">
-    @method('put')
-                    @csrf
+                        <!-- enctpye is the encoding tpye, and the multipart means that the upload can be split into smaller files so its faster to process -->
+                        <form action="{{ route('toys.update', $toy) }}" method="post" enctype="multipart/form-data">
+                            @method('put')
+                                            @csrf
               
-<!-- creates an edit for the name input -->
-
+                        <!-- creates an edit for the name input -->
+    <!-- using the component text-input it pulls the design and displays it with the correct attributes -->
                     <x-text-input
                         type="text"
                         name="name"
@@ -32,11 +44,11 @@
                     <span class="text-red-500">{{ $message }}</span>
                         @enderror
 
-                        <!-- using the component text-input it pulls the design and displays it with the correct attributes -->
+                       
 
 
                         <!-- creates an edit for the type input -->
-
+  <!-- using the component text-input it pulls the design and displays it with the correct attributes -->
                         <x-text-input
                         type="text"
                         name="type"
@@ -49,48 +61,48 @@
                     <span class="text-red-500">{{ $message }}</span>
                         @enderror
 
-                   <!-- using the component text-input it pulls the design and displays it with the correct attributes -->
+                         <!-- creates an edit for the colour select -->
 
-                        <!-- creates an edit for the colour select -->
-<!-- colour and size @old isnt working, something to do with how laravel handles components that are selects. When x-select is changed to systems select and the foreach is passed in where the :valur is.(PASTED BELOW) the old works, description isnt being remebered either -->
-<!-- <option value="" selected>Select Colour</option> 
-    @foreach(['red', 'green', 'mixed','black','white','orange','purple','blue','yellow','pink','brown'] as $colour)
-        <option value="{{ $colour }}" {{ old('colour') === $colour ? 'selected' : '' }}>{{ ucfirst($colour) }}</option>
-    @endforeach -->
-
-<!-- to solve this i propose that in the css file we target select in the edit file, give it the chosen design just dont touch it -->
-
-                    <x-select
+                    <!-- creates an edit for the colour select -->
+    <!-- using the inbuilt select, that has been css'd we loop an array of options as select options and display as a dropdown in the edit for the option colour -->
+                    <select
+                        class="custom-select"
                         type="select"
                         name="colour" 
                         id="colour" 
                         field="colour"
                         
-                        class="w-full mt-6"
-                        :value="@old('colour', $toy->colour)" 
-                        ></x-select>
+                        class="w-full mt-6">
+                        <option value="" selected>Select Colour</option> 
+                        @foreach(['red', 'green', 'mixed','black','white','orange','purple','blue','yellow','pink','brown'] as $colour)
+                            <option value="{{ $colour }}" {{ old('colour') === $colour ? 'selected' : '' }}>{{ ucfirst($colour) }}</option>
+                        @endforeach
+                        ></select>
 
                         @error('colour')
                         <span class="text-red-500">{{ $message }}</span>
                         @enderror
-                     <!-- using the component select it pulls the design and displays it with the correct attributes -->
+                     
 
                         <!-- creates an edit for the size select -->
+    <!-- using the inbuilt select, that has been css'd we loop an array of options as select options and display as a dropdown in the edit for the option size-->
 
-
-                        <x-select-size
+                        <select
+                        class="custom-select"
                         type="select"
                         name="size" 
                         id="size" 
                         field="size"
-                        class="w-full mt-6"
-                        :value="@old('size', $toy->size)" >
-                        </x-select-size>
-
+                        class="w-full mt-6">
+                        <option value="" selected>Select Size</option>
+                        @foreach(['small', 'medium', 'large'] as $size)
+                            <option value="{{ $size }}" {{ old('size') === $size ? 'selected' : '' }}>{{ ucfirst($size) }}</option>
+                        @endforeach
+                        </select>
                         @error('size')
                         <span class="text-red-500">{{ $message }}</span>
                         @enderror
-                        <!-- using the component select-size it pulls the design and displays it with the correct attributes -->
+                        
 
 
                     <!-- creates an edit for the description textarea -->

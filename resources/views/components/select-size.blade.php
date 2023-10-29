@@ -1,9 +1,8 @@
 <!-- select option for create, providing the select for the options.
-This is done by creating a foreach loop which loops through the array and provides
-these individual array items as select options.
-Which are then displayed in create and edit, as a dropdown -->
-<!-- in order to not have to pass size options here, I'd have to make a new App\View\Componet folder (that is seperate to the components folder) and extend component into it
-seems like a waste of time, id rather create 3 files for my select boxes -->
+
+
+in order to be able to pass a foreach into the EDIT, i must use a normal select not a component, (due to the fact that the old isnt working as it when it searches for the array in edit it comes out a null, and acts as if nothing is selected returning no @old) .
+hence i am keeping this component here for the record. But it will only worl in create, whilst for edit i will use a class from css which then allows the old to work -->
 <div>
     <select {!! $attributes->merge(['class' => 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300
     focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md
