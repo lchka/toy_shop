@@ -72,25 +72,50 @@ class ToyController extends Controller
         return to_route ('toys.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-
-
+    
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Toy $toy)
     {
-        //
+        return view('toys.edit')->with('toy', $toy);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Toy $toy)
     {
-        //
+        $request->validate([
+            'name' => 'required | min:4 | max:25 ',
+            'colour' =>'required', //these are enums and they arent accepting, in: item1,item2, proabaly due to the datatype set.
+            'size' =>'required',
+            'type' =>'required | min:4 | max:25 | alpha',
+            'description' =>'required | max:2058',
+            'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
+           
+            
+        ]);
+
+        if ($request->hasFile('toy_image')){
+            $image = $request->file('toy_image');
+            $imageName = time() . '.' . $image->extension();
+
+            $image->storeAs('public/toys' , $imageName);
+            $toy_image_name = 'storage/toys/' . $imageName;
+        }
+
+        $toy->update([
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'colour'=>$request->colour,
+            'size'=>$request->size,
+            'type'=>$request->type,
+            'toy_image'=>$toy_image_name,
+            'created_at' =>now(),
+            'updated_at'=>now()
+        ]);        
+        return to_route ('toys.show', $toy)->with('success','Toy has been updates successfully');
     }
 
     /**
