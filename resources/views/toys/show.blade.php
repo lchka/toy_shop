@@ -25,6 +25,9 @@
 
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                <form method="POST" action="{{ route('toys.destroy', $toy) }}"
+                            @csrf
+                            @method('DELETE')
                     <table class="table table-hover">
                         <tbody>
                           <tr>
@@ -55,7 +58,9 @@
 
                     <!-- button to go to the edit page of the specific column -->
                     <x-primary-button><a href="{{ route('toys.edit', $toy) }}">Edit</a> </x-primary-button>
-                </div>
+                    <x-primary-button><a href="{{ route('toys.destroy', $toy) }}">Delete</a> </x-primary-button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

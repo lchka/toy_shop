@@ -65,23 +65,21 @@
 
                     <!-- creates an edit for the colour select -->
     <!-- using the inbuilt select, that has been css'd we loop an array of options as select options and display as a dropdown in the edit for the option colour -->
-                    <select
-                        class="custom-select"
+                        <select
+                        class="custom-select w-full mt-6"
                         type="select"
                         name="colour" 
                         id="colour" 
-                        field="colour"
-                        
-                        class="w-full mt-6">
-                        <option value="" selected>Select Colour</option> 
+                        field="colour">
                         @foreach(['red', 'green', 'mixed','black','white','orange','purple','blue','yellow','pink','brown'] as $colour)
                             <option value="{{ $colour }}" {{ old('colour') === $colour ? 'selected' : '' }}>{{ ucfirst($colour) }}</option>
                         @endforeach
-                        ></select>
+                    </select>
 
-                        @error('colour')
-                        <span class="text-red-500">{{ $message }}</span>
-                        @enderror
+                    @error('colour')
+                    <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+
                      
 
                         <!-- creates an edit for the size select -->
@@ -94,7 +92,7 @@
                         id="size" 
                         field="size"
                         class="w-full mt-6">
-                        <option value="" selected>Select Size</option>
+                       
                         @foreach(['small', 'medium', 'large'] as $size)
                             <option value="{{ $size }}" {{ old('size') === $size ? 'selected' : '' }}>{{ ucfirst($size) }}</option>
                         @endforeach
@@ -106,6 +104,7 @@
 
 
                     <!-- creates an edit for the description textarea -->
+                    <!-- using the component textarea it pulls the design and displays it with the correct attributes -->
                     <x-textarea
                         type="text"
                         name="description"
@@ -119,7 +118,6 @@
                     <span class="text-red-500">{{ $message }}</span>
                         @enderror
 
-                    <!-- using the component textarea it pulls the design and displays it with the correct attributes -->
 
 
                     <!-- creates an edit for the image file input -->

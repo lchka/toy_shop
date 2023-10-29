@@ -118,11 +118,11 @@ class ToyController extends Controller
         return to_route ('toys.show', $toy)->with('success','Toy has been updates successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy(Toy $toy)
+{
+    $toy->delete(); // This will delete the toy from the database.
+
+    return to_route('toys.index')->with('success', 'Toy deleted successfully');
+}
+
 }
