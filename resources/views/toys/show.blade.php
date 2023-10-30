@@ -45,6 +45,7 @@
                         <x-primary-button type="submit">Delete</x-primary-button>
                     </form>
                 </div>
+                
             </div>
         </div>
     </div>
