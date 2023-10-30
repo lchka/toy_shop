@@ -9,6 +9,8 @@ use App\Http\Controllers\ToyController;
 
 
 Route::resource('/toys',ToyController::class);
+Route::delete('/toys/{toy}', 'ToyController@destroy')->name('toys.destroy');
+
 
 Route::get('/', function () {
     return view('welcome');

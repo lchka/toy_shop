@@ -119,10 +119,11 @@ class ToyController extends Controller
     }
 
     public function destroy(Toy $toy)
-{
-    $toy->delete(); // This will delete the toy from the database.
-
-    return to_route('toys.index')->with('success', 'Toy deleted successfully');
-}
+    { 
+        $toy->delete(); // This will delete the toy from the database.
+    
+        return to_route('toys.index')->with('success', 'Toy deleted successfully');
+    }
+    
 
 }
