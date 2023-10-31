@@ -4,7 +4,7 @@
                             <option value="{{ $colour }}" {{ old('colour') === $colour ? 'selected' : '' }}>{{ ucfirst($colour) }}</option>
                         @endforeach -->
 
-                    <!-- SOLVED: to solve this i propose that in the css file we target select in the edit file, give it the chosen design just dont touch it -->
+                    <!-- SOLVED: i ended up using the inbuilt select then css'd in the css file, also the foreach breaks if there is a normal option above it, so the old stopped working. as it was returning an empty array just reading the first option-->
 
 
 

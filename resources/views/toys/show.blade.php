@@ -1,4 +1,6 @@
+
 <x-app-layout>
+    <!-- this is the main show page for my toy entity -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Dashboard
@@ -7,6 +9,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+         <!-- used for making the succes alert appear, by saying if the session was successful then display this message -->
+
             <x-alert-success>
                 {{ session('success') }}
             </x-alert-success>
@@ -21,13 +26,23 @@
                                 </td>
                             </tr>
                             <tr>
+<!-- displays the toy name by pulling by toy id from the database -->
+
                                 <td class="font-bold">Name</td>
                                 <td>{{ $toy->name }}</td>
                             </tr>
+
+<!-- displays the toy description by pulling by toy id from the database -->
+
+
                             <tr>
                                 <td class="font-bold">Description</td>
                                 <td>{{ $toy->description }}</td>
                             </tr>
+
+<!-- displays the toy colour by pulling by toy id from the database -->
+
+
                             <tr>
                                 <td class="font-bold">Colour</td>
                                 <td>{{ $toy->colour }}</td>
@@ -38,12 +53,13 @@
                     <!-- Button to go to the edit page of the specific column -->
                     <x-primary-button><a href="{{ route('toys.edit', $toy) }}">Edit</a></x-primary-button>
 
-                    <!-- Delete button linking to the delete route -->
+                    <!-- Delete button linking to the delete route must use the method delete and not get as its removing something from the database rather than retrieving it -->
                     <form method="POST" action="{{ route('toys.destroy', $toy) }}">
                         @csrf
                         @method('DELETE')
-                        <x-primary-button type="submit">Delete</x-primary-button>
+                        <x-primary-button>Delete</x-primary-button>
                     </form>
+
                 </div>
                 
             </div>

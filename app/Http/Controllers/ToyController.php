@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace App\Http\Controllers;
 
 use App\Models\Toy;
@@ -7,9 +9,8 @@ use Illuminate\Http\Request;
 
 class ToyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // this is the main controller for the entity toy, it handles all the methods and makes a template for the entity//
+    
 
     //  shows the index of 'all toys' by accessing the model and pushing the fake db onto the front end
      
@@ -115,14 +116,16 @@ class ToyController extends Controller
             'created_at' =>now(),
             'updated_at'=>now()
         ]);        
-        return to_route ('toys.show', $toy)->with('success','Toy has been updates successfully');
+        return to_route ('toys.show', $toy)->with('success','Toy has been updated successfully');
     }
+
+// the delete method, at first it wouldn't work, that was due to the config cache being overloaded. 
 
     public function destroy(Toy $toy)
     { 
         $toy->delete(); // This will delete the toy from the database.
     
-        return to_route('toys.index')->with('success', 'Toy deleted successfully');
+        return to_route ('toys.index', $toy)->with('success','Toy deleted successfully');
     }
     
 
