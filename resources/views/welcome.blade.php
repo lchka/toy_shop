@@ -16,6 +16,7 @@
         </style>
     </head>
     <body class="antialiased">
+        
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
@@ -30,21 +31,24 @@
                     @endauth
                 </div>
             @endif
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header">Laura's Pet toy's Shop!</div>
-            
-                            <div class="card-body">
-                                <p>
-                                    Welcome to the home page for Laura's Pet Toys Store (This is the welcome view)
-                                </p>
+        <div style="background-image: url('{{ asset('images/main.jpg') }}'); width:100%; min-height:100vh;  display: flex; justify-content: center; align-items; background-size: contain; background-position: 300px center; ">
+                <div class="container-12">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">Lili's Pet Toy's Shop!</div>
+
+                                <div class="card-body">
+                                    <p>
+                                        Welcome to the home page for Lili's Pet Toys Store
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </body>
 </html>

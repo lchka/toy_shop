@@ -1,5 +1,5 @@
 
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-red-700">
+<nav x-data="{ open: false }" class="bg-white dark:bg-pink-900 border-b border-gray-100 dark:border-red-300">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -13,7 +13,7 @@
                         <img src="{{ asset('images/shiba.png') }}" alt="Image Description" width="45" >
 
 
-                                                <!-- icon -->
+                         <!-- the litte shiba icon  -->
                     </a>
                 </div>
 

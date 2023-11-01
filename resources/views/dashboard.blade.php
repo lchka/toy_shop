@@ -10,7 +10,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-pink-200 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white dark:bg-pink-200 overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 text-white-900 border-4 border-solid border-pink-300 font-bold text-red-800">
                         {{ __("You're logged in!") }}
                 </div>
