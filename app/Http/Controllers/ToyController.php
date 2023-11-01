@@ -58,7 +58,7 @@ class ToyController extends Controller
 
 
         
-// this create is for taking the input placed into these individual create form, which is then pushed into the Toy model, then into the database and then placed in the view of index and show
+// this create is for taking the input placed into these individual create form, which is then pushed into the Toy model, then into the database and then placed in the view of index and show, then show cases the alert message
 
         Toy::create([
             'name'=>$request->name,
@@ -70,7 +70,7 @@ class ToyController extends Controller
             'created_at' =>now(),
             'updated_at'=>now()
         ]);
-        return to_route ('toys.index');
+        return to_route ('toys.index')->with('success','Toy created successfully');
     }
 
     
