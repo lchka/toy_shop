@@ -6,9 +6,12 @@ use App\Http\Controllers\ToyController;
 
 
 
-
+// this is used to route to all the possible view variations made with the toycontroller
 
 Route::resource('/toys',ToyController::class);
+
+
+
 
 
 Route::get('/', function () {

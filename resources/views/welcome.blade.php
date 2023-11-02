@@ -31,14 +31,14 @@
                     @endauth
                 </div>
             @endif
-        <div style="background-image: url('{{ asset('images/main.jpg') }}'); width:100%; min-height:100vh;  display: flex; justify-content: center; align-items; background-size: contain; background-position: 300px center; ">
-                <div class="container-12">
+        
+                <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">Lili's Pet Toy's Shop!</div>
+                                <div class="card-header" style="color:white;">Lili's Pet Toy's Shop!</div>
 
-                                <div class="card-body">
+                                <div class="card-body" style="color:white;">
                                     <p>
                                         Welcome to the home page for Lili's Pet Toys Store
                                     </p>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
 
     </body>
 </html>

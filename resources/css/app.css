@@ -2,21 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* this is the css used in the edit page due to the edit function not recognsing the select component */
 .custom-select {
     margin-top: 20px;
     margin-right: 1880px;
-    border: 1px solid rgb(17, 24, 39); /* Border color for non-focused state */
-    background-color: rgb(17, 24, 39); /* Background color for non-focused state */
-    color: white; /* Text color for non-focused state */
+    border: 1px solid rgb(0, 0, 0); /* Border color for non-focused state */
+    background-color: rgb(251, 207, 232); /* Background color for non-focused state */
+    color: black; /* Text color for non-focused state */
     border-radius: 0.375rem; /* Rounded corners */
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Shadow for non-focused state */
     width: 1165px
 }
 
 .custom-select:focus {
-    border-color: #3B82F6; /* Border color for focused state */
-    background-color: rgb(17, 24, 39); /* Background color for focused state */
-    color: white; /* Text color for focused state */
+    border-color: rgb(136, 0, 255); /* Border color for focused state */
+    background-color: rgb(251, 207, 232); /* Background color for focused state */
+    color: black; /* Text color for focused state */
     outline: rgb(17, 24, 39); /* Remove the default focus outline */
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* Add a custom focus ring */
 }

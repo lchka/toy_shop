@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 
 class ToyController extends Controller
 {
-    // this is the main controller for the entity toy, it handles all the methods and makes a template for the entity//
+    // this is the main controller for the entity toy, it handles all the methods and makes a template for the entity
     
 
-    //  shows the index of 'all toys' by accessing the model and pushing the fake db onto the front end
+    //  shows the index of 'all toys' by accessing the model and pushing the fake db into the view
      
     public function index()
     {
@@ -35,30 +35,33 @@ class ToyController extends Controller
         return view('toys.create');
     }
     
+    // stores the input placed into the boxes by validating that input put is corret and then passes it through
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required | min:4 | max:25 ',
-            'colour' =>'required', //these are enums and they arent accepting, in: item1,item2, proabaly due to the datatype set.
-            'size' =>'required',
+            'name' => 'required | min:4 | max:25 ', //min is used for the smallest amount alloiwed in the input box and max for the largest
+            'colour' =>'required | alpha', //alpha is used to validate that the string doesn't contain numbers
+            'size' =>'required | alpha',
             'type' =>'required | min:4 | max:25 | alpha',
             'description' =>'required | max:2058',
             'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
-           
+           //image validation is validating that input is placed, mimes is used to validate the type of file placed
             
         ]);
         
+            //this creates a unique name for every singel file placed into the file input box, and generates the name by time stamp
+
         if ($request->hasFile('toy_image')){
             $image = $request->file('toy_image');
             $imageName = time() . '.' . $image->extension();
-
+            //which is then stored (placed) into the public folder toys
             $image->storeAs('public/toys' , $imageName);
             $toy_image_name = 'storage/toys/' . $imageName;
         }
 
 
         
-// this create is for taking the input placed into these individual create form, which is then pushed into the Toy model, then into the database and then placed in the view of index and show, then show cases the alert message
+            // this create is for taking the input placed into these individual create form, which is then pushed into the Toy model, then into the database and then placed in the view of index and show, then show cases the alert message
 
         Toy::create([
             'name'=>$request->name,
@@ -70,21 +73,22 @@ class ToyController extends Controller
             'created_at' =>now(),
             'updated_at'=>now()
         ]);
+
+        //then return to the view index if storing is successful, with a message
+
         return to_route ('toys.index')->with('success','Toy created successfully');
     }
 
     
-    /**
-     * Show the form for editing the specified resource.
-     */
+
+        // the function edit allows the user to edit the preset column in the database, by accessing it through its unique id. Displaying the edit page
+
     public function edit(Toy $toy)
     {
         return view('toys.edit')->with('toy', $toy);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+        //the function works similarly to the function validate, where it goes through the same process of validation and then storing if the validation is successful
     public function update(Request $request, Toy $toy)
     {
         $request->validate([
@@ -98,13 +102,17 @@ class ToyController extends Controller
             
         ]);
 
+        //same as previous store for image
+
         if ($request->hasFile('toy_image')){
             $image = $request->file('toy_image');
             $imageName = time() . '.' . $image->extension();
 
-            $image->storeAs('public/toys' , $imageName);
+            $image->storeAs('storage/toys' , $imageName);
             $toy_image_name = 'storage/toys/' . $imageName;
         }
+
+        //same as the function create it proceeds to store ther vlaidated fields into the correct column
 
         $toy->update([
             'name'=>$request->name,

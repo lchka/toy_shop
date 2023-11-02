@@ -7,7 +7,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
          <!-- used for making the succes alert appear, by saying if the session was successful then display this message -->
@@ -21,31 +21,46 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
+                                <!-- displays the toy name by pulling by toy id from the database -->
+                          
                                 <td rowspan="6">
-                                    <img src="{{ asset($toy->toy_image) }}" width="150" />
+                                    <img src="{{ asset($toy->toy_image) }}" width="250"  />
                                 </td>
                             </tr>
+                            <!-- displays the toy name by pulling by toy id from the database -->
                             <tr>
-<!-- displays the toy name by pulling by toy id from the database -->
-
-                                <td class="font-bold">Name</td>
-                                <td>{{ $toy->name }}</td>
+                                <td class="font-bold" style="padding-left: 25px;" >Name:</td>
+                                <td style="font-style: italic;">{{ $toy->name }}</td>
                             </tr>
 
-<!-- displays the toy description by pulling by toy id from the database -->
+                            <!-- displays the toy colour by pulling by toy id from the database -->
 
 
                             <tr>
-                                <td class="font-bold">Description</td>
-                                <td>{{ $toy->description }}</td>
+                                <td class="font-bold" style="padding-left: 25px;">Colour:</td>
+                                <td style="text-transform: capitalize; font-style: italic;">{{ $toy->colour }}</td>
                             </tr>
 
-<!-- displays the toy colour by pulling by toy id from the database -->
-
+                            <!-- displays the toy size by pulling by toy id from the database -->
 
                             <tr>
-                                <td class="font-bold">Colour</td>
-                                <td>{{ $toy->colour }}</td>
+                                <td class="font-bold" style="padding-left: 25px;">Size:</td>
+                                <td style="text-transform: capitalize; font-style: italic;">{{ $toy->size }}</td>
+                            </tr>
+
+                            <!-- displays the toy type by pulling by toy id from the database -->
+
+                            <tr>
+                                <td class="font-bold" style="padding-left: 25px;">Type:</td>
+                                <td style="text-transform: capitalize; font-style: italic;">{{ $toy->type }}</td>
+                            </tr>
+
+                            <!-- displays the toy description by pulling by toy id from the database -->
+
+
+                            <tr> 
+                                <td class="font-bold" style="padding-left: 25px; padding-right: 10px;">Description:</td>
+                                <td style="vertical-align: center; font-style: italic;">{{ $toy->description }}</td>
                             </tr>
                         </tbody>
                     </table>
