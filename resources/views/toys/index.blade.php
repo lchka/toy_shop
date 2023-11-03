@@ -3,38 +3,49 @@
 <x-app-layout>
     <x-slot name="header">
        
-        <h2 class="font-bold text-xl text-gray-800 leading-tight">
+        <h2 class="font-bold text-xl text-white-800 leading-tight">
             {{ __('All Toys') }}
         </h2>
     </x-slot>
-    
-                
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form method="GET">
-                    @csrf
-                    <label for="column">Select a Column to Sort By:</label>
-                    <select id="column" name="column" onchange="this.form.submit()">
-                    <option value="name" {{ Request::input('column') == 'name' ? 'selected' : '' }}>Name</option>
-                        <option value="colour" {{ Request::input('column') == 'colour' ? 'selected' : '' }}>Colour</option>
-                        <option value="type" {{ Request::input('column') == 'type' ? 'selected' : '' }}>Type</option>
-                        <option value="size" {{ Request::input('column') == 'size' ? 'selected' : '' }}>Size</option>
-                    </select>
-                </form>
+           
+            <!-- in our function index we stated a query that includes paginations
+            this allows us to use lesser code and eliminate any overwriting of the $toys variable.
+             This is done by requesting the user to choose a column and in which direction it would like it displayed
+            this is then passed through the route (toys.index) and post the results based on the query stated there  -->
 
-                <div>
-                    <table>
-                        <tbody>
-                            @php
-                                $column = Request::input('column', 'id');
-                                $direction = Request::input('direction', 'desc');
-                                $toyz = $toys->sortBy($column, SORT_REGULAR, $direction);
-                            @endphp
-                        </tbody>
-                    </table>
-                </div>
+            <form method="GET" action="{{ route('toys.index') }}">
+    @csrf
+
+    <label style="font-size:16px; background-color:#F9A8D4; padding: 8px 15px; font-weight:bold; border-radius: 5px;border-color:#F8BBD0;" for="keyword">Search by Keyword:</label>
+    <input type="text" id="keyword" name="keyword" placeholder="Type keyword" value="{{ Request::input('keyword') }}">
+
+    <label style="font-size:16px; background-color:#F9A8D4; padding: 8px 15px; font-weight:bold; border-radius: 5px;" for="column">Sort by Column:</label>
+    <select id="column" name="column">
+    <option value="name" {{ Request::input('column') == '' ? 'selected' : '' }}>Select Column</option>
+        <option value="name" {{ Request::input('column') == 'name' ? 'selected' : '' }}>Name</option>
+        <option value="colour" {{ Request::input('column') == 'colour' ? 'selected' : '' }}>Colour</option>
+        <option value="type" {{ Request::input('column') == 'type' ? 'selected' : '' }}>Type</option>
+        <option value="size" {{ Request::input('column') == 'size' ? 'selected' : '' }}>Size</option>
+    </select>
+
+    <select id="direction" name="direction">
+    <option value="name" {{ Request::input('column') == '' ? 'selected' : '' }}>Select order by</option>
+        <option value="asc" {{ Request::input('direction') == 'asc' ? 'selected' : '' }}>Ascending</option>
+        <option value="desc" {{ Request::input('direction') == 'desc' ? 'selected' : '' }}>Descending</option>
+    </select>
+
+    <button type="submit" style="background-color: #EEEEEE; color: #9E9E9E; font-weight:bold; font-size: 16px; border: #F8BBD0; padding: 6px 25px; cursor: pointer; transition: background-color 0.1s; border-radius: 5px;" 
+        onmouseover="this.style.backgroundColor='#F8BBD0'; this.style.color='white'; this.style.border='2px solid #CE93D8';" 
+        onmouseout="this.style.backgroundColor='#EEEEEE'; this.style.color='#9E9E9E'; this.style.border='#F8BBD0';">
+        Search & Sort
+    </button>
+</form>
+
+
             <!-- used for making the succes alert appear, by saying if the session was successful then display this message -->
+
         <x-alert-success>
                 {{ session('success') }}
             </x-alert-success>
@@ -72,6 +83,8 @@
             @empty
             <p>No Toys</p>
             @endforelse
+
+<!-- add the inbuilt pagination for each of the query -->
 
              <div class="pagination">
               {{ $toys->links() }}

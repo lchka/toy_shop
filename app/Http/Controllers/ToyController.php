@@ -12,16 +12,30 @@ class ToyController extends Controller
     // this is the main controller for the entity toy, it handles all the methods and makes a template for the entity
     
 
-    //  shows the index of 'all toys' by accessing the model and pushing the fake db into the view
+    //  the index not only displays all toys by default, it allows the user to sort through the various columns and add a query, in which. The user may input key words into the input box, select a drop down option of columns and choose in which way they want it sorted. This is done by sql querying on line 29. If the toys shown are over 5 per page, the paginate then begins to work and adds multiple page option depending on the outcome of the user sorting/input. 
      
-    public function index()
+    public function index(Request $request)
     {
-        
-        $query = Toy::query();
-        $toys = $query->paginate(5);
+        $customColumn = $request->input('custom_column', 'id');
+        $customDirection = $request->input('custom_direction', 'desc');
+    
+        $keyword = $request->input('keyword');
+        $column = $request->input('column');
+        $direction = $request->input('direction');
+    
+        $toys = Toy::query();
+    
+        if (!empty($keyword) && in_array($column, ['name', 'colour', 'type', 'size'])) {
+            $toys->where($column, 'like', "%$keyword%");
+        }
+    
+        $toys->orderBy($customColumn, $customDirection);
+    
+        $toys = $toys->paginate(5);
+    
         return view('toys.index', compact('toys'));
-
     }
+    
 
     // shows the singular toy entity by pulling it by the individual id which is the linked in index by title 
 

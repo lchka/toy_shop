@@ -16,6 +16,6 @@ class ToysTableSeeder extends Seeder
      */
     public function run()
     {
-        Toy::factory(15)->create();
+        Toy::factory(35)->create();
     }
 }

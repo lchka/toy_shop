@@ -1,5 +1,5 @@
 
-<nav x-data="{ open: false }" class="bg-white bg-pink-200 border-b border-gray-100 dark:border-red-300">
+<nav x-data="{ open: false }" class="bg-white bg-red-200 border-b border-gray-100 dark:border-red-300">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
