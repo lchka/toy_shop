@@ -69,7 +69,9 @@
 
                         <a href="{{ route('toys.show', $toy) }}"><img src="{{ asset($toy->toy_image) }}" alt="{{ $toy->name }}" width="100">
                         </a>
-                        
+                        <div class="pagination">
+                            {{ $toys->links() }}
+                        </div>
                     @else
                         No Image
                     @endif
