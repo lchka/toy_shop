@@ -37,7 +37,7 @@
     </select>
 
     <button type="submit" style="background-color: #EEEEEE; color: #9E9E9E; font-weight:bold; font-size: 16px; border: #F8BBD0; padding: 6px 25px; cursor: pointer; transition: background-color 0.1s; border-radius: 5px;" 
-        onmouseover="this.style.backgroundColor='#F8BBD0'; this.style.color='white'; this.style.border='2px solid #CE93D8';" 
+        onmouseover="this.style.backgroundColor='#90CAF9'; this.style.color='white'; this.style.border='2px solid #2196F3';" 
         onmouseout="this.style.backgroundColor='#EEEEEE'; this.style.color='#9E9E9E'; this.style.border='#F8BBD0';">
         Search & Sort
     </button>
