@@ -17,9 +17,8 @@ class ToyController extends Controller
     public function index()
     {
         
-        $toys = Toy::all();
         $query = Toy::query();
-        $toys= $query->paginate(5);
+        $toys = $query->paginate(5);
         return view('toys.index', compact('toys'));
 
     }

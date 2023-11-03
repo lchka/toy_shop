@@ -8,7 +8,11 @@
         </h2>
     </x-slot>
     
-                <form method="GET">
+                
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <form method="GET">
                     @csrf
                     <label for="column">Select a Column to Sort By:</label>
                     <select id="column" name="column" onchange="this.form.submit()">
@@ -21,26 +25,15 @@
 
                 <div>
                     <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Colour</th>
-                                <th>Type</th>
-                                <th>Size</th>
-                            </tr>
-                        </thead>
                         <tbody>
                             @php
                                 $column = Request::input('column', 'id');
                                 $direction = Request::input('direction', 'desc');
-                                $toys = $toys->sortBy($column, SORT_REGULAR, $direction);
+                                $toyz = $toys->sortBy($column, SORT_REGULAR, $direction);
                             @endphp
                         </tbody>
                     </table>
                 </div>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- used for making the succes alert appear, by saying if the session was successful then display this message -->
         <x-alert-success>
                 {{ session('success') }}
@@ -69,9 +62,7 @@
 
                         <a href="{{ route('toys.show', $toy) }}"><img src="{{ asset($toy->toy_image) }}" alt="{{ $toy->name }}" width="100">
                         </a>
-                        <div class="pagination">
-                            {{ $toys->links() }}
-                        </div>
+                        
                     @else
                         No Image
                     @endif
@@ -81,7 +72,12 @@
             @empty
             <p>No Toys</p>
             @endforelse
-            
+
+             <div class="pagination">
+              {{ $toys->links() }}
+            </div>
+
         </div>
+       
     </div>
 </x-app-layout>
