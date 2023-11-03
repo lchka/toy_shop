@@ -72,7 +72,7 @@
                     <form method="POST" action="{{ route('toys.destroy', $toy) }}">
                         @csrf
                         @method('DELETE')
-                        <x-primary-button>Delete</x-primary-button>
+                        <x-primary-button onclick="return confirm('Are you sure you want to delete?')">Delete</x-primary-button>
                     </form>
 
                 </div>

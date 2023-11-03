@@ -16,16 +16,21 @@ class ToyController extends Controller
      
     public function index()
     {
+        
         $toys = Toy::all();
+        $query = Toy::query();
+        $toys= $query->paginate(5);
         return view('toys.index', compact('toys'));
+
     }
 
     // shows the singular toy entity by pulling it by the individual id which is the linked in index by title 
 
     public function show($id)
     {
-        $toy = Toy::find($id);
+        $toy = Toy::find($id); 
         return view('toys.show')->with('toy', $toy);
+       
     }
 
     // this creates function is used to show the view called toy.create which is the form for using the storing functiona and pushing and displaying the database
@@ -135,6 +140,5 @@ class ToyController extends Controller
     
         return to_route ('toys.index', $toy)->with('success','Toy deleted successfully');
     }
-    
 
 }

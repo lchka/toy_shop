@@ -10,8 +10,7 @@ use App\Http\Controllers\ToyController;
 
 Route::resource('/toys',ToyController::class);
 
-
-
+// routes/web.php
 
 
 Route::get('/', function () {
