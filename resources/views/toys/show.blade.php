@@ -16,21 +16,24 @@
                 {{ session('success') }}
             </x-alert-success>
 
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+            <div class="bg-white shadow-xl sm:rounded-lg">
+                <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-xl sm:rounded-lg">
                     <table class="table table-hover">
                         <tbody>
                             <tr>
+
                                 <!-- displays the toy name by pulling by toy id from the database -->
-                          
+
+                            <tr>
+                                <td style="font-weight: bold; font-size:28px; padding-bottom:25px">{{ $toy->name }}</td>
+                            </tr>
+
+                                <!-- displays the toy image by pulling by toy id from the database -->
+
+
                                 <td rowspan="6">
                                     <img src="{{ asset($toy->toy_image) }}" width="250"  />
                                 </td>
-                            </tr>
-                            <!-- displays the toy name by pulling by toy id from the database -->
-                            <tr>
-                                <td class="font-bold" style="padding-left: 25px;" >Name:</td>
-                                <td style="font-style: italic;">{{ $toy->name }}</td>
                             </tr>
 
                             <!-- displays the toy colour by pulling by toy id from the database -->
@@ -53,6 +56,13 @@
                             <tr>
                                 <td class="font-bold" style="padding-left: 25px;">Type:</td>
                                 <td style="text-transform: capitalize; font-style: italic;">{{ $toy->type }}</td>
+                            </tr>
+
+                            <!-- displays the company name by pulling by toy id from the database -->
+
+                            <tr>
+                                <td class="font-bold" style="padding-left: 25px;">Company:</td>
+                                <td style="text-transform: capitalize; font-style: italic;">{{ $toy->company_name }}</td>
                             </tr>
 
                             <!-- displays the toy description by pulling by toy id from the database -->
