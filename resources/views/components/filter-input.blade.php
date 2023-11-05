@@ -1,0 +1,1 @@
+<input type="text" class="bg-white border border-purple-700 px-3 py-2 pr-40 mr-7 rounded cursor-pointer text-base" id="keyword" name="keyword" placeholder="Sort by Keyword" value="{{ Request::input('keyword') }}">

@@ -32,19 +32,3 @@
     cursor: pointer;
 };
 
-.filter-button {
-    background-color: #A5D3F8;
-    color: white;
-    border: 2px solid #2196F3;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 5px 20px;
-    cursor: pointer;
-    transition: background-color 0.1s;
-}
-
-.filter-button:hover {
-    background-color: #2295F2;
-    color: white;
-    border: 2px solid #2196F3;
-}

@@ -18,11 +18,11 @@
                                 <form method="GET" action="{{ route('toys.index') }}">
                         @csrf
 
-                        <!-- this creates the input box with some css, this also created an input box which the user can places a word or sentence and it allows the user to filter among the results if theyre using the column and asc section as well. Its done by querying from the toy controller and placing that 'word' into the query using the sql Like and wild cards. -->
+                        <!-- this creates the input box with a component, a user can places a word or sentence and it allows the user to filter among the results if theyre using the column and direction as well. Its done by querying from the toy controller and placing that 'word' into the query using the sql Like and wild cards. -->
 
-                        <input style="margin-right:25px; padding: 7px 235px 7px 15px;" class="filter-select" type="text" id="keyword" name="keyword" placeholder="Sort by Keyword" value="{{ Request::input('keyword') }}">
+                        <x-filter-input>Sort by Keyword"</x-filter-input>
 
-                        <!-- created the select option from the columns where the user can choose which column to select by that is then queried with the toycontroller, defaults to select option-->
+                        <!-- laravel breeze doesnt handle selects as components well, hence we're using the inbuilt select, created the select option from the columns where the user can choose which column to select by that is then queried with the toycontroller, defaults to select option-->
 
                         <select class="filter-select" style="margin-right:25px;" id="column" name="column">
 
@@ -41,9 +41,12 @@
                             <option value="desc" {{ Request::input('direction') == 'desc' ? 'selected' : '' }}>Descending</option>
                         </select> 
 
-                        <!-- button that sorts the columns, directions and input box  -->
+                        <!-- button that sorts the columns, directions and input box also uses a component -->
 
-                        <button type="submit" class="filter-button"> Search & Sort </button>
+                        
+                        <x-filter-button>
+                            Search & Sort
+                        </x-filter-button>
                     </form>
 
 
@@ -54,41 +57,53 @@
                 {{ session('success') }}
             </x-alert-success>
     
-<!-- resources/views/toys.index.blade.php -->
+                        <!-- shows the index of all toys  -->
 
-            @forelse ($toys as $toy)
-                <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                    <h2 class="font-bolder text-2xl">
 
-                    <!-- my link to the show -->
-
-                    <a href="{{ route('toys.show', $toy) }}">{{ ucfirst($toy->name) }}</a>
-                    </h2>
-
-                    <!-- should be displaying all these in the index-->
-
-                    <p class="mt-2">
-                        <p>Toy Colour: {{ucfirst ($toy->colour) }}</p>
-                        <p>Toy Size: {{ucfirst ($toy->size) }}</p>
-                        <p>Toy Description: {{ucfirst($toy->description)}}</p>
-                       <p> @if ($toy->toy_image)
-
-                    <!-- made the image clickable so that they also show the the specifc column by id -->
-
-                        <a href="{{ route('toys.show', $toy) }}"><img src="{{ asset($toy->toy_image) }}" alt="{{ $toy->name }}" width="100">
-                        </a>
+                        <!-- this counter works by calculating what page youre on, and what page you were on previously. It take the number of the page and subtracts 1, then it multiples by the number of items displayed on the page (5 since out paginate does that in the toycontroller) and adds 1 (since counters start at 0) adds that to the previous page's item number (hence the 1) -->
                         
-                    @else
-                        No Image
-                    @endif
-                    </p></p>
+                        @php
+                            $itemNumber = ($toys->currentPage() - 1) * $toys->perPage() + 1;
+                        @endphp
 
-                </div>
-            @empty
-            <p>No Toys</p>
-            @endforelse
+                        @forelse ($toys as $index => $toy)
+                            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                                <h2 class="font-bolder text-2xl">
 
-<!-- add the inbuilt pagination for each of the query -->
+                                <!-- by using the a php counter we add an item number to each individual item this is done the with $itemNumber variable. -->
+
+                                {{ $itemNumber  }}. <a href="{{ route('toys.show', $toy) }}">{{ ucfirst($toy->name) }}</a>
+                                </h2>
+
+                                <!-- displays the shown columns -->
+
+                                <p class="mt-2">
+                                    <p>Toy Colour: {{ucfirst ($toy->colour) }}</p>
+                                    <p>Toy Size: {{ucfirst ($toy->size) }}</p>
+                                    <p>Toy Description: {{ucfirst($toy->description)}}</p>
+                                    <p>
+
+                                    <!-- made the image clickable as well, route then to the show of the item-->
+
+                                        @if ($toy->toy_image)
+                                            <a href="{{ route('toys.show', $toy) }}"><img src="{{ asset($toy->toy_image) }}" alt="{{ $toy->name }}" width="100"></a>
+                                        @else
+                                            No Image
+                                        @endif
+                                    </p>
+                                </p>
+                            </div>
+
+                            <!-- this allows the itemNumber to always increase by 1 and only 1 -->
+                            
+                            @php
+                                $itemNumber++;
+                            @endphp
+                        @empty
+                            <p>No Toys</p>
+                        @endforelse
+
+                    <!-- added the inbuilt pagination for each of the query -->
 
              <div class="pagination">
               {{ $toys->links() }}
