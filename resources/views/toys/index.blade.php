@@ -18,35 +18,34 @@
                                 <form method="GET" action="{{ route('toys.index') }}">
                         @csrf
 
+                        <!-- this creates the input box with some css, this also created an input box which the user can places a word or sentence and it allows the user to filter among the results if theyre using the column and asc section as well. Its done by querying from the toy controller and placing that 'word' into the query using the sql Like and wild cards. -->
 
-                        
-                        <input style= "padding-right:200px; margin-right:25px;" type="text" id="keyword" name="keyword" placeholder="Search by Keyword" value="{{ Request::input('keyword') }}">
+                        <input style="margin-right:25px; padding: 7px 235px 7px 15px;" class="filter-select" type="text" id="keyword" name="keyword" placeholder="Sort by Keyword" value="{{ Request::input('keyword') }}">
 
-
-                       
-
+                        <!-- created the select option from the columns where the user can choose which column to select by that is then queried with the toycontroller, defaults to select option-->
 
                         <select class="filter-select" style="margin-right:25px;" id="column" name="column">
-                        <option value="name" {{ Request::input('column') == '' ? 'selected' : '' }}>Select Column</option>
+
+                        <option value="" {{ Request::input('column') == '' ? 'selected' : '' }}>Select Option</option>
                             <option value="name" {{ Request::input('column') == 'name' ? 'selected' : '' }}>Name</option>
                             <option value="colour" {{ Request::input('column') == 'colour' ? 'selected' : '' }}>Colour</option>
                             <option value="type" {{ Request::input('column') == 'type' ? 'selected' : '' }}>Type</option>
                             <option value="size" {{ Request::input('column') == 'size' ? 'selected' : '' }}>Size</option>
                         </select>
 
+                        <!-- select options for thr direction in which the column order by, defaults to select order by -->
+
                         <select class="filter-select" style="margin-right:25px;" id="direction" name="direction">
-                        <option value="name" {{ Request::input('column') == '' ? 'selected' : '' }}>Select order by</option>
+                            <option value="name" {{ Request::input('column') == '' ? 'selected' : '' }}>Select order by</option>
                             <option value="asc" {{ Request::input('direction') == 'asc' ? 'selected' : '' }}>Ascending</option>
                             <option value="desc" {{ Request::input('direction') == 'desc' ? 'selected' : '' }}>Descending</option>
                         </select> 
 
-                        <button type="submit" style="background-color: #A5D3F8; color: white; border:2px solid #2196F3; font-weight:bold; font-size: 16px; padding: 5px 20px; cursor: pointer; transition: background-color 0.1s;" 
-                            onmouseover="this.style.backgroundColor='#2295F2'; this.style.color='white'; this.style.border='2px solid #2196F3';" 
-                            onmouseout="this.style.backgroundColor='#8EC8F7'; this.style.color='white'; this.style.border='2px solid #2196F3';">
-                            Search & Sort
-                        </button>
+                        <!-- button that sorts the columns, directions and input box  -->
 
+                        <button type="submit" class="filter-button"> Search & Sort </button>
                     </form>
+
 
 
             <!-- used for making the succes alert appear, by saying if the session was successful then display this message -->

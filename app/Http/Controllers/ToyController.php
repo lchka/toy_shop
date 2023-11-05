@@ -16,25 +16,28 @@ class ToyController extends Controller
      
     public function index(Request $request)
     {
-        $customColumn = $request->input('custom_column', 'id');
-        $customDirection = $request->input('custom_direction', 'desc');
-    
-        $keyword = $request->input('keyword');
-        $column = $request->input('column');
-        $direction = $request->input('direction');
+        $column = $request->input('column', ''); // Default to an empty string if no column selected
+        $keyword = $request->input('keyword', ''); // Default to an empty string if no keyword
     
         $toys = Toy::query();
     
-        if (!empty($keyword) && in_array($column, ['name', 'colour', 'type', 'size'])) {
-            $toys->where($column, 'like', "%$keyword%");
+        if (!empty($column) && in_array($column, ['name', 'colour', 'type', 'size'])) {
+            $toys->where($column, 'like', '%' . $keyword . '%');
         }
     
-        $toys->orderBy($customColumn, $customDirection);
+        $customColumn = $request->input('custom_column', ''); // both default to empty option select
+        $customDirection = $request->input('custom_direction', ''); //both default to empty option select
+    
+        // Only apply sorting if a valid custom column is chosen
+        if (!empty($customColumn) && in_array($customColumn, ['name', 'colour', 'type', 'size'])) {
+            $toys->orderBy($customColumn, $customDirection); // if the the column is not empty and the options arent selected order it by the column and direction. This allows the input ox to not be required when selecting the columns and directions.
+        }
     
         $toys = $toys->paginate(5);
     
         return view('toys.index', compact('toys'));
     }
+    
     
 
     // shows the singular toy entity by pulling it by the individual id which is the linked in index by title 
