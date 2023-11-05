@@ -64,6 +64,7 @@ class ToyController extends Controller
             'colour' =>'required | alpha', //alpha is used to validate that the string doesn't contain numbers
             'size' =>'required | alpha',
             'type' =>'required | min:4 | max:25 | alpha',
+            'company_name'=> 'required | min:5 | max:45',
             'description' =>'required | max:2058',
             'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
            //image validation is validating that input is placed, mimes is used to validate the type of file placed
@@ -90,6 +91,7 @@ class ToyController extends Controller
             'colour'=>$request->colour,
             'size'=>$request->size,
             'type'=>$request->type,
+            'company_name'=>$request->company_name,
             'toy_image'=>$toy_image_name,
             'created_at' =>now(),
             'updated_at'=>now()
@@ -117,6 +119,7 @@ class ToyController extends Controller
             'colour' =>'required', //these are enums and they arent accepting, in: item1,item2, proabaly due to the datatype set.
             'size' =>'required',
             'type' =>'required | min:4 | max:25 | alpha',
+            'company_name'=> 'required | min:5 | max:45',
             'description' =>'required | max:2058',
             'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
            
@@ -141,6 +144,7 @@ class ToyController extends Controller
             'colour'=>$request->colour,
             'size'=>$request->size,
             'type'=>$request->type,
+            'company_name'=>$request->company_name,
             'toy_image'=>$toy_image_name,
             'created_at' =>now(),
             'updated_at'=>now()

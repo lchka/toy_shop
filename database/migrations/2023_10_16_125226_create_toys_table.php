@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('colour');
             $table->string('size');
             $table->string('type');
+            $table->string('company_name');
             $table->string('toy_image')->nullable();
             $table->timestamps();
         });

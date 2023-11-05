@@ -101,6 +101,20 @@
                         <span class="text-red-500">{{ $message }}</span>
                         @enderror
                         
+                    <!-- creates an edit for the company name text input -->
+
+                        <x-text-input
+                        type="text"
+                        name="company_name"
+                        field="company_name"
+                        placeholder="Company Name"
+                        class="w-full mt-6"
+                        autocomplete="off"
+                        :value="@old('company_name', $toy->company_name)"></x-text-input>
+                        @error('type')
+                    <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+
 
 
                     <!-- creates an edit for the description textarea -->

@@ -71,7 +71,6 @@
 
                         <!-- creates a create for the size select -->
 
-
                         <x-select-size
                         type="select"
                         name="size" 
@@ -86,6 +85,21 @@
                         @enderror
                         <!-- using the component select-size it pulls the design and displays it with the correct attributes -->
 
+                        <!-- creates a create for the company name text input -->
+
+                        <x-text-input
+                        type="text"
+                        name="company_name"
+                        field="company_name"
+                        placeholder="Company Name"
+                        class="w-full mt-6"
+                        autocomplete="off"
+                        :value="@old('company_name')">
+                        </x-text-input>
+
+                        @error('type')
+                    <span class="text-red-500">{{ $message }}</span>
+                        @enderror
 
                     <!-- creates a create for the description textarea -->
                     <x-textarea

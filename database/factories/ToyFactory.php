@@ -21,6 +21,7 @@ class ToyFactory extends Factory
             'colour'=>fake()->randomElement(['red', 'green', 'mixed','black','white','orange','purple','blue','yellow','pink','brown']),//randomElement acts as an enum
             'size'=>fake()->randomElement(['small', 'medium', 'large']),//cant use enum for fake/faker, must use randomElement
             'type'=>fake()->word,//makes sure the fake is a single word
+            'company_name'=>fake()->word,//makes sure the fake is a single word
             'toy_image'=>fake()->imageUrl,//makes sure the fake is ana iamge
             'created_at'=> now(),
             'updated_at'=> now(),

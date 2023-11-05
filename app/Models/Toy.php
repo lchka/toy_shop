@@ -14,6 +14,7 @@ class Toy extends Model
         'description',
         'colour',
         'size',
+        'company_name',
         'type',
         'toy_image'
     ];
