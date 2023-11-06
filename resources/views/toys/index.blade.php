@@ -26,7 +26,8 @@
 
                         <select class="filter-select" style="margin-right:25px;" id="column" name="column">
 
-                        <option value="" {{ Request::input('column') == '' ? 'selected' : '' }}>Select Option</option>
+                             <option value="" {{ Request::input('column') == '' ? 'selected' : '' }}>Select Column</option>
+                            <option value="company_name" {{ Request::input('column') == 'company_name' ? 'selected' : '' }}>Company Name</option>
                             <option value="name" {{ Request::input('column') == 'name' ? 'selected' : '' }}>Name</option>
                             <option value="colour" {{ Request::input('column') == 'colour' ? 'selected' : '' }}>Colour</option>
                             <option value="type" {{ Request::input('column') == 'type' ? 'selected' : '' }}>Type</option>
@@ -36,7 +37,7 @@
                         <!-- select options for thr direction in which the column order by, defaults to select order by -->
 
                         <select class="filter-select" style="margin-right:25px;" id="direction" name="direction">
-                            <option value="name" {{ Request::input('column') == '' ? 'selected' : '' }}>Select order by</option>
+                            <option value="name" {{ Request::input('column') == '' ? 'selected' : '' }}>Order by</option>
                             <option value="asc" {{ Request::input('direction') == 'asc' ? 'selected' : '' }}>Ascending</option>
                             <option value="desc" {{ Request::input('direction') == 'desc' ? 'selected' : '' }}>Descending</option>
                         </select> 
@@ -80,6 +81,7 @@
                                 <p class="mt-2">
                                     <p>Toy Colour: {{ucfirst ($toy->colour) }}</p>
                                     <p>Toy Size: {{ucfirst ($toy->size) }}</p>
+                                    <p>Company: {{ucfirst($toy->company_name)}}</p>
                                     <p>Toy Description: {{ucfirst($toy->description)}}</p>
                                     <p>
 
