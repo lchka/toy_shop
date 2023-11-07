@@ -133,6 +133,14 @@
                         @enderror
 
 
+                        <!-- the image is pulled from the folder just no displayed as a file, this line of code proves that by testing the image depending on the toy id -->
+
+                    @if(old('toy_image'))
+                        <img src="{{ old('toy_image') }}" width="250" />
+                    @else
+                        <img src="{{ asset($toy->toy_image) }}" width="250" />
+                    @endif
+
 
                     <!-- creates an edit for the image file input -->
                   

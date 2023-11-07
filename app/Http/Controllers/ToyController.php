@@ -4,7 +4,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Toy;
+use App\Models\Toy;         
 use Illuminate\Http\Request;
 
 class ToyController extends Controller
@@ -79,7 +79,7 @@ class ToyController extends Controller
             //which is then stored (placed) into the public folder toys
             $image->storeAs('public/toys' , $imageName);
             $toy_image_name = 'storage/toys/' . $imageName;
-        }
+        } 
 
 
         
@@ -131,10 +131,10 @@ class ToyController extends Controller
         if ($request->hasFile('toy_image')){
             $image = $request->file('toy_image');
             $imageName = time() . '.' . $image->extension();
-
-            $image->storeAs('storage/toys' , $imageName);
+            //which is then stored (placed) into the public folder toys
+            $image->storeAs('public/toys' , $imageName);
             $toy_image_name = 'storage/toys/' . $imageName;
-        }
+        } 
 
         //same as the function create it proceeds to store ther vlaidated fields into the correct column
 
