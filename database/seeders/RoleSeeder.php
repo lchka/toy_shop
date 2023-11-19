@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -12,6 +13,15 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-    }
+        $role_admin= new Role();
+        $role_admin->name = 'admin';
+        $role_admin->description= 'An Administrator user';
+        $role_admin->save();
+
+        $role_user= new Role();
+        $role_user->name = 'user';
+        $role_user->description = 'An Ordidnary User';
+        $role_user->save();
+
+        }
 }

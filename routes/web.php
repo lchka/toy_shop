@@ -2,13 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ToyController;
+use App\Http\Controllers\Admin\ToyController as AdminToyController;
+use App\Http\Controllers\User\ToyController as UserToyController;
+
 
 
 
 // this is used to route to all the possible view variations made with the toycontroller
 
-Route::resource('/toys',ToyController::class);
+// Route::resource('/toys',ToyController::class);
 
 // routes/web.php
 
@@ -27,4 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::resource('/admin/toys', AdminToyController::class)->middleware(['auth'])->names('admin.toys');
+
+Route::resource('/user/toys', UserToyController::class)->middleware(['auth'])->names('user.toys')->only(['index','show']);
 require __DIR__.'/auth.php';
