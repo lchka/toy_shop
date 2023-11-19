@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ToyController as AdminToyController;
 use App\Http\Controllers\User\ToyController as UserToyController;
+
 
 
 

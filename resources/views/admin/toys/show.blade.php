@@ -76,10 +76,10 @@
                     </table>
 
                     <!-- Button to go to the edit page of the specific column -->
-                    <x-primary-button><a href="{{ route('toys.edit', $toy) }}">Edit</a></x-primary-button>
+                    <x-primary-button><a href="{{ route('admin.toys.edit', $toy) }}">Edit</a></x-primary-button>
 
                     <!-- Delete button linking to the delete route must use the method delete and not get as its removing something from the database rather than retrieving it -->
-                    <form method="POST" action="{{ route('toys.destroy', $toy) }}">
+                    <form method="POST" action="{{ route('admin.toys.destroy', $toy) }}">
                         @csrf
                         @method('DELETE')
                         <x-primary-button onclick="return confirm('Are you sure you want to delete?')">Delete</x-primary-button>

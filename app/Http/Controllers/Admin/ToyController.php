@@ -2,9 +2,11 @@
 
 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Toy;         
+use App\Http\Controllers\Controller; 
+use App\Models\Toy;     
+use illuminate\Support\Facades\Auth;  
 use Illuminate\Http\Request;
 
 class ToyController extends Controller
@@ -33,9 +35,12 @@ class ToyController extends Controller
             $toys->orderBy($customColumn, $customDirection); // if the the column is not empty and the options arent selected order it by the column and direction. This allows the input ox to not be required when selecting the columns and directions.
         }
     
+        $user= Auth::user();
+        $user->authorizeRoles('admin');
+
         $toys = $toys->paginate(5);
     
-        return view('toys.index', compact('toys'));
+        return view('admin.toys.index')->with('toys',$toys);
     }
     
     
@@ -44,8 +49,10 @@ class ToyController extends Controller
 
     public function show($id)
     {
+        $user= Auth::user();
+        $user->authorizeRoles('admin');
         $toy = Toy::find($id); 
-        return view('toys.show')->with('toy', $toy);
+        return view('admin.toys.show')->with('toy', $toy);
        
     }
 
@@ -53,12 +60,18 @@ class ToyController extends Controller
 
     public function create()
     {
-        return view('toys.create');
+        $user= Auth::user();
+        $user->authorizeRoles('admin');
+        return view('admin.toys.create');
     }
     
     // stores the input placed into the boxes by validating that input put is corret and then passes it through
     public function store(Request $request)
     {
+         
+
+
+
         $request->validate([
             'name' => 'required | min:4 | max:25 ', //min is used for the smallest amount alloiwed in the input box and max for the largest
             'colour' =>'required | alpha', //alpha is used to validate that the string doesn't contain numbers
@@ -98,8 +111,10 @@ class ToyController extends Controller
         ]);
 
         //then return to the view index if storing is successful, with a message
+        $user= Auth::user();
+        $user->authorizeRoles('admin');
 
-        return to_route ('toys.index')->with('success','Toy created successfully');
+        return to_route ('admin.toys.index')->with('success','Toy created successfully');
     }
 
     
@@ -108,7 +123,9 @@ class ToyController extends Controller
 
     public function edit(Toy $toy)
     {
-        return view('toys.edit')->with('toy', $toy);
+        $user= Auth::user();
+        $user->authorizeRoles('admin');
+        return view('admin.toys.edit')->with('toy', $toy);
     }
 
         //the function works similarly to the function validate, where it goes through the same process of validation and then storing if the validation is successful
@@ -148,8 +165,10 @@ class ToyController extends Controller
             'toy_image'=>$toy_image_name,
             'created_at' =>now(),
             'updated_at'=>now()
-        ]);        
-        return to_route ('toys.show', $toy)->with('success','Toy has been updated successfully');
+        ]);   
+        $user= Auth::user();
+        $user->authorizeRoles('admin');     
+        return to_route ('admin.toys.show', $toy)->with('success','Toy has been updated successfully');
     }
 
 // the delete method, at first it wouldn't work, that was due to the config cache being overloaded. 
@@ -157,8 +176,9 @@ class ToyController extends Controller
     public function destroy(Toy $toy)
     { 
         $toy->delete(); // This will delete the toy from the database.
-    
-        return to_route ('toys.index', $toy)->with('success','Toy deleted successfully');
+        $user= Auth::user();
+        $user->authorizeRoles('admin');
+        return to_route ('admin.toys.index', $toy)->with('success','Toy deleted successfully');
     }
 
 }
