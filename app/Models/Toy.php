@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Toy extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
 //creates a template for our toy entity creating attributes, these display as columns in the database
         'name',
@@ -18,4 +19,8 @@ class Toy extends Model
         'type',
         'toy_image'
     ];
+    public function animal(){
+
+        return $this->belongsTo(Animal::class);
+    }
 }
