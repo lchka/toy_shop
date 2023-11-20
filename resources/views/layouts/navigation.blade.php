@@ -19,10 +19,6 @@
 
 
 
-
-
-
-
                 <!-- New Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -32,15 +28,15 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
                         <x-nav-link :href="route('admin.toys.index')" :active="request()->routeIs('admin.toys.index')">
-                            {{ __('All Books') }}
+                            {{ __('All Toys') }}
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('user'))
                         <x-nav-link :href="route('user.toys.index')" :active="request()->routeIs('user.toys.index')">
-                            {{ __('All Books') }}
+                            {{ __('All Toys') }}
                         </x-nav-link>
                     @else
                         <x-nav-link :href="route('toys.index')" :active="request()->routeIs('toys.index')">
-                            {{ __('All Books') }}
+                            {{ __('All Toys') }}
                         </x-nav-link>
                     @endif
                 </div>
