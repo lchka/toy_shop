@@ -17,7 +17,9 @@ class AnimalFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'animal_name'=>$this->faker->animal_name,
+            'size'=> $this->faker->size,
+            'country_origin'=>$this->faker->country_origin,
         ];
     }
 }
