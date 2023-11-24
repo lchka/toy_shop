@@ -17,7 +17,8 @@ class Toy extends Model
         'size',
         'company_name',
         'type',
-        'toy_image'
+        'toy_image',
+        'animal_id'
     ];
     public function animal(){
 

@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
 
         $admin = new User();
         $admin->name='Laura Hofmanova';
-        $admin->email= 'N00222003@iadt.ie';
+        $admin->email= 'N00222003@sailiadt.ie';
         $admin->password= Hash::make('password');
         $admin->save();
 

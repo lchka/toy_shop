@@ -72,6 +72,14 @@
                                 <td class="font-bold" style="padding-left: 25px; padding-right: 10px;">Description:</td>
                                 <td style="vertical-align: center; font-style: italic;">{{ $toy->description }}</td>
                             </tr>
+
+                            <!-- displays the toy animal entity by pulling from the animal db-->
+
+
+                            <td class="font-bold" style="padding-left: 25px;">Animal Name:
+                                    {{$toy->animal->animal_name}} </td>
+                                 
+
                         </tbody>
                     </table>
 

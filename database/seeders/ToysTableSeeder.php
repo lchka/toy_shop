@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Toy;
-
+use App\Models\Animal;
 
 
 class ToysTableSeeder extends Seeder
@@ -16,6 +16,15 @@ class ToysTableSeeder extends Seeder
      */
     public function run()
     {
-        Toy::factory(35)->create();
+        // Define an array of animal IDs
+        $animalIds = [1, 2, 3];
+
+        // Generate 35 toys
+        Toy::factory()->count(35)->create([
+            'animal_id' => function () use ($animalIds) {
+                // Randomly select an animal_id from the array
+                return $animalIds[array_rand($animalIds)];
+            },
+        ]);
     }
 }

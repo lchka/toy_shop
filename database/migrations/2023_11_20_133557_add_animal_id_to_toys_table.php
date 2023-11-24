@@ -9,20 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('toys', function (Blueprint $table) {
-            $table->unsignedBigInteger('animal_id');
-            $table->foreign('animal_id')->references('id')->on('animals')->onUpdate('cascade')->onDelete('restrict');
+            if (!Schema::hasColumn('toys', 'animal_id')) {
+                $table->unsignedBigInteger('animal_id');
+                $table->foreign('animal_id')->references('id')->on('animals')->onUpdate('cascade')->onDelete('restrict');
+            }
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    
+    public function down()
     {
         Schema::table('toys', function (Blueprint $table) {
+            // Specify the foreign key constraint name explicitly
             $table->dropForeign(['animal_id']);
             $table->dropColumn('animal_id');
         });

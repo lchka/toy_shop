@@ -31,6 +31,7 @@
                                 <!-- displays the toy image by pulling by toy id from the database -->
 
 
+
                                 <td rowspan="6">
                                     <img src="{{ asset($toy->toy_image) }}" width="250"  />
                                 </td>
@@ -72,6 +73,14 @@
                                 <td class="font-bold" style="padding-left: 25px; padding-right: 10px;">Description:</td>
                                 <td style="vertical-align: center; font-style: italic;">{{ $toy->description }}</td>
                             </tr>
+
+                            <!-- displays the toy animal entity by pulling from the animal db-->
+
+
+                            <td style="font-weight: bold; font-size:28px; padding-bottom:25px"> <strong> Animal Name: </strong>
+                                    {{$toy->animal->animal_name}} </td>
+
+                                    
                         </tbody>
                     </table>
 

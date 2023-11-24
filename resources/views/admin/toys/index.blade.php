@@ -79,6 +79,8 @@
                                 <!-- displays the shown columns -->
 
                                 <p class="mt-2">
+                                    <h3 class="font-bold text-1x1"> <strong> Animal Name: </strong>
+                                    {{$toy->animal->animal_name}} </h3>
                                     <p>Toy Colour: {{ucfirst ($toy->colour) }}</p>
                                     <p>Toy Size: {{ucfirst ($toy->size) }}</p>
                                     <p>Company: {{ucfirst($toy->company_name)}}</p>

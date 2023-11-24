@@ -35,7 +35,7 @@
                             {{ __('All Toys') }}
                         </x-nav-link>
                     @else
-                        <x-nav-link :href="route('toys.index')" :active="request()->routeIs('toys.index')">
+                        <x-nav-link :href="route('user.toys.index')" :active="request()->routeIs('toys.index')">
                             {{ __('All Toys') }}
                         </x-nav-link>
                     @endif

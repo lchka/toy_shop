@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('company_name');
             $table->string('toy_image')->nullable();
+            $table->unsignedBigInteger('animal_id');
             $table->timestamps();
         });
     }
