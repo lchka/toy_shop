@@ -40,9 +40,18 @@ class AnimalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Animal $animal)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        if(!Auth::id()) {
+            return abort(403);
+        }
+
+        $toys= $animal->toys;
+
+        return view('admin.animals.show', compact('animal','toys'));
     }
 
     /**
