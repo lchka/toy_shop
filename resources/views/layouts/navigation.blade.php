@@ -43,7 +43,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
                         <x-nav-link :href="route('admin.toys.create')" :active="request()->routeIs('admin.toys.create')">
-                            {{ __('Create Book') }}
+                            {{ __('Create Toy') }}
                         </x-nav-link>
                   
                     @endif
