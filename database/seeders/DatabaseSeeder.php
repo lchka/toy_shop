@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Toy; //call for toy entity
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+      Toy::factory()->count(50)->create(); //creates 50 instances of the database toys
+       $this->call(RoleSeeder::class); //seeds roles
+       $this->call(UserSeeder::class);//seeds user with the hardcoded users
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+       
     }
 }
