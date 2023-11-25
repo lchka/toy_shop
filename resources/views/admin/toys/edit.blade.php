@@ -116,6 +116,10 @@
                         @enderror
 
 
+                        <!-- old isnt working same error as for colour and size -->
+                        <div class="mt-6">
+                        <x-select-animal name="animal_id" :animals="$animals" :selected="old('animal_id')"/>
+                        </div>
 
                     <!-- creates an edit for the description textarea -->
                     <!-- using the component textarea it pulls the design and displays it with the correct attributes -->

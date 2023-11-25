@@ -9,13 +9,19 @@ class Toy extends Model
 {
     use HasFactory;
     protected $fillable = [
-//creates a template for our toy entity creating attributes, these display as columns in the database
+        //creates a template for our toy entity creating attributes, these display as columns in the database
         'name',
         'description',
         'colour',
         'size',
         'company_name',
         'type',
+        'animal_id',
         'toy_image'
     ];
+
+    public function animal()
+    {
+        return $this->belongsTo(Animal::class);
+    }
 }

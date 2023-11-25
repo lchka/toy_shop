@@ -101,6 +101,9 @@
                     <span class="text-red-500">{{ $message }}</span>
                         @enderror
 
+                        <div class="mt-6">
+                        <x-select-animal name="animal_id" :animals="$animals" :selected="old('animal_id')"/>
+                        </div>
                     <!-- creates a create for the description textarea -->
                     <x-textarea
                         type="text"

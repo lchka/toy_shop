@@ -5,6 +5,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller; 
+use App\Models\Animal;     
 use App\Models\Toy;     
 use illuminate\Support\Facades\Auth;  
 use Illuminate\Http\Request;
@@ -62,14 +63,17 @@ class ToyController extends Controller
     {
         $user= Auth::user();
         $user->authorizeRoles('admin');
-        return view('admin.toys.create');
+
+        $animals= Animal::all();
+        return view('admin.toys.create')->with('animals',$animals);
     }
     
     // stores the input placed into the boxes by validating that input put is corret and then passes it through
     public function store(Request $request)
     {
          
-
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
 
 
         $request->validate([
@@ -79,6 +83,7 @@ class ToyController extends Controller
             'type' =>'required | min:4 | max:25 | alpha',
             'company_name'=> 'required | min:5 | max:45',
             'description' =>'required | max:2058',
+            'animal_id'=> 'required',
             'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
            //image validation is validating that input is placed, mimes is used to validate the type of file placed
             
@@ -105,14 +110,13 @@ class ToyController extends Controller
             'size'=>$request->size,
             'type'=>$request->type,
             'company_name'=>$request->company_name,
+            'animal_id'=>$request->animal_id,
             'toy_image'=>$toy_image_name,
             'created_at' =>now(),
             'updated_at'=>now()
         ]);
 
         //then return to the view index if storing is successful, with a message
-        $user= Auth::user();
-        $user->authorizeRoles('admin');
 
         return to_route ('admin.toys.index')->with('success','Toy created successfully');
     }
@@ -125,7 +129,8 @@ class ToyController extends Controller
     {
         $user= Auth::user();
         $user->authorizeRoles('admin');
-        return view('admin.toys.edit')->with('toy', $toy);
+        $animals = Animal::all();
+        return view('admin.toys.edit')->with('toy', $toy)->with('animals', $animals);
     }
 
         //the function works similarly to the function validate, where it goes through the same process of validation and then storing if the validation is successful
@@ -138,6 +143,7 @@ class ToyController extends Controller
             'type' =>'required | min:4 | max:25 | alpha',
             'company_name'=> 'required | min:5 | max:45',
             'description' =>'required | max:2058',
+            'animal_id'=> 'required',
             'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
            
             
@@ -162,6 +168,7 @@ class ToyController extends Controller
             'size'=>$request->size,
             'type'=>$request->type,
             'company_name'=>$request->company_name,
+            'animal_id'=>$request->animal_id,
             'toy_image'=>$toy_image_name,
             'created_at' =>now(),
             'updated_at'=>now()
