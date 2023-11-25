@@ -2,9 +2,11 @@
 
 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Models\Toy;         
+use App\Http\Controllers\Controller; 
+use App\Models\Toy;     
+use illuminate\Support\Facades\Auth;  
 use Illuminate\Http\Request;
 
 class ToyController extends Controller
@@ -33,9 +35,13 @@ class ToyController extends Controller
             $toys->orderBy($customColumn, $customDirection); // if the the column is not empty and the options arent selected order it by the column and direction. This allows the input ox to not be required when selecting the columns and directions.
         }
     
+        // $user= Auth::user();
+        // $user->authorizeRoles('admin');
+        //might not need this
+
         $toys = $toys->paginate(5);
     
-        return view('toys.index', compact('toys'));
+        return view('user.toys.index')->with('toys',$toys);
     }
     
     
@@ -44,121 +50,13 @@ class ToyController extends Controller
 
     public function show($id)
     {
+
+         // $user= Auth::user();
+        // $user->authorizeRoles('admin');
+        //might not need this
         $toy = Toy::find($id); 
-        return view('toys.show')->with('toy', $toy);
+        return view('user.toys.show')->with('toy', $toy);
        
-    }
-
-    // this creates function is used to show the view called toy.create which is the form for using the storing functiona and pushing and displaying the database
-
-    public function create()
-    {
-        return view('toys.create');
-    }
-    
-    // stores the input placed into the boxes by validating that input put is corret and then passes it through
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required | min:4 | max:25 ', //min is used for the smallest amount alloiwed in the input box and max for the largest
-            'colour' =>'required | alpha', //alpha is used to validate that the string doesn't contain numbers
-            'size' =>'required | alpha',
-            'type' =>'required | min:4 | max:25 | alpha',
-            'company_name'=> 'required | min:5 | max:45',
-            'description' =>'required | max:2058',
-            'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
-           //image validation is validating that input is placed, mimes is used to validate the type of file placed
-            
-        ]);
-        
-            //this creates a unique name for every singel file placed into the file input box, and generates the name by time stamp
-
-        if ($request->hasFile('toy_image')){
-            $image = $request->file('toy_image');
-            $imageName = time() . '.' . $image->extension();
-            //which is then stored (placed) into the public folder toys
-            $image->storeAs('public/toys' , $imageName);
-            $toy_image_name = 'storage/toys/' . $imageName;
-        } 
-
-
-        
-            // this create is for taking the input placed into these individual create form, which is then pushed into the Toy model, then into the database and then placed in the view of index and show, then show cases the alert message
-
-        Toy::create([
-            'name'=>$request->name,
-            'description'=>$request->description,
-            'colour'=>$request->colour,
-            'size'=>$request->size,
-            'type'=>$request->type,
-            'company_name'=>$request->company_name,
-            'toy_image'=>$toy_image_name,
-            'created_at' =>now(),
-            'updated_at'=>now()
-        ]);
-
-        //then return to the view index if storing is successful, with a message
-
-        return to_route ('toys.index')->with('success','Toy created successfully');
-    }
-
-    
-
-        // the function edit allows the user to edit the preset column in the database, by accessing it through its unique id. Displaying the edit page
-
-    public function edit(Toy $toy)
-    {
-        return view('toys.edit')->with('toy', $toy);
-    }
-
-        //the function works similarly to the function validate, where it goes through the same process of validation and then storing if the validation is successful
-    public function update(Request $request, Toy $toy)
-    {
-        $request->validate([
-            'name' => 'required | min:4 | max:25 ',
-            'colour' =>'required', //these are enums and they arent accepting, in: item1,item2, proabaly due to the datatype set.
-            'size' =>'required',
-            'type' =>'required | min:4 | max:25 | alpha',
-            'company_name'=> 'required | min:5 | max:45',
-            'description' =>'required | max:2058',
-            'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
-           
-            
-        ]);
-
-        //same as previous store for image
-
-        if ($request->hasFile('toy_image')){
-            $image = $request->file('toy_image');
-            $imageName = time() . '.' . $image->extension();
-            //which is then stored (placed) into the public folder toys
-            $image->storeAs('public/toys' , $imageName);
-            $toy_image_name = 'storage/toys/' . $imageName;
-        } 
-
-        //same as the function create it proceeds to store ther vlaidated fields into the correct column
-
-        $toy->update([
-            'name'=>$request->name,
-            'description'=>$request->description,
-            'colour'=>$request->colour,
-            'size'=>$request->size,
-            'type'=>$request->type,
-            'company_name'=>$request->company_name,
-            'toy_image'=>$toy_image_name,
-            'created_at' =>now(),
-            'updated_at'=>now()
-        ]);        
-        return to_route ('toys.show', $toy)->with('success','Toy has been updated successfully');
-    }
-
-// the delete method, at first it wouldn't work, that was due to the config cache being overloaded. 
-
-    public function destroy(Toy $toy)
-    { 
-        $toy->delete(); // This will delete the toy from the database.
-    
-        return to_route ('toys.index', $toy)->with('success','Toy deleted successfully');
     }
 
 }

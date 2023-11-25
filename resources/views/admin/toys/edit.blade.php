@@ -10,7 +10,7 @@
 
 
 
-<title>Lili's Edit for Pet Toy Store</title>
+                    <title>Lili's Edit for Pet Toy Store</title>
 
 
 <!-- creates a template for the edit section of the show view (from a specific id)-->
@@ -26,7 +26,7 @@
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
 
                         <!-- enctpye is the encoding tpye, and the multipart means that the upload can be split into smaller files so its faster to process -->
-                        <form action="{{ route('toys.update', $toy) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('admin.toys.update', $toy) }}" method="post" enctype="multipart/form-data">
                             @method('put')
                                             @csrf
               

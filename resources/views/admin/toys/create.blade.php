@@ -15,7 +15,7 @@
 
 <!-- allows for the input to have enctpye is the encoding tpye, and the multipart means that the upload can be split into smaller files so its faster to process -->
 
-                <form action="{{ route('toys.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.toys.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
 <!-- creates a create for the name input -->

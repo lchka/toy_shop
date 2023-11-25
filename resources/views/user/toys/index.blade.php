@@ -15,7 +15,7 @@
              This is done by requesting the user to choose a column and in which direction it would like it displayed
             this is then passed through the route (toys.index) and post the results based on the query stated there  -->
 
-                                <form method="GET" action="{{ route('toys.index') }}">
+                                <form method="GET" action="{{ route('user.toys.index') }}">
                         @csrf
 
                         <!-- this creates the input box with a component, a user can places a word or sentence and it allows the user to filter among the results if theyre using the column and direction as well. Its done by querying from the toy controller and placing that 'word' into the query using the sql Like and wild cards. -->
@@ -73,12 +73,14 @@
 
                                 <!-- by using the a php counter we add an item number to each individual item this is done the with $itemNumber variable. -->
 
-                                {{ $itemNumber  }}. <a href="{{ route('toys.show', $toy) }}">{{ ucfirst($toy->name) }}</a>
+                                {{ $itemNumber  }}. <a href="{{ route('user.toys.show', $toy) }}">{{ ucfirst($toy->name) }}</a>
                                 </h2>
 
                                 <!-- displays the shown columns -->
 
                                 <p class="mt-2">
+                                <h3 class="font-bold text-1x1"> <strong> Animal Name: </strong>
+                                    {{$toy->animal->animal_name}} </h3>
                                     <p>Toy Colour: {{ucfirst ($toy->colour) }}</p>
                                     <p>Toy Size: {{ucfirst ($toy->size) }}</p>
                                     <p>Company: {{ucfirst($toy->company_name)}}</p>
@@ -88,7 +90,7 @@
                                     <!-- made the image clickable as well, route then to the show of the item-->
 
                                         @if ($toy->toy_image)
-                                            <a href="{{ route('toys.show', $toy) }}"><img src="{{ asset($toy->toy_image) }}" alt="{{ $toy->name }}" width="100"></a>
+                                            <a href="{{ route('user.toys.show', $toy) }}"><img src="{{ asset($toy->toy_image) }}" alt="{{ $toy->name }}" width="100"></a>
                                         @else
                                             No Image
                                         @endif
