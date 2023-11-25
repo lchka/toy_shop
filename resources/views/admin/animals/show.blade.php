@@ -14,7 +14,15 @@
             <p class="text-gray-700"><span class="font-bold">Size:</span> {{ $animal->size }} </p>
             <!-- might break as size is an enum -->
             <p class="text-gray-700"><span class="font-bold">Country of Origin:</span> {{ $animal->country }} </p>
+            <x-primary-button><a href="{{ route('admin.animals.edit', $animal) }}">Edit</a></x-primary-button>
 
+            <form method="POST" action="{{ route('admin.animals.destroy', $animal) }}">
+                        @csrf
+                        @method('DELETE')
+                        <x-primary-button onclick="return confirm('Are you sure you want to delete?')">Delete</x-primary-button>
+                    </form>
+
+                    
             <h3 class="font-bold text-2xl mt-6 mb-4">Toys By {{ $animal->animal_name }}</h3>
 
             @forelse ($toys as $toy)
@@ -25,6 +33,8 @@
             @empty
             <p> No Toys for this animal </p>
             @endforelse
+
+            
         </div>
     </div>
 

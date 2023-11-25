@@ -26,16 +26,37 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        //
+        $user= Auth::user();
+        $user->authorizeRoles('admin');
+
+        $animals= Animal::all();
+        return view('admin.animals.create')->with('animals',$animals);
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $user = Auth::user();
+    $user->authorizeRoles('admin');
+
+    $request->validate([
+        'animal_name' => 'required|min:4|max:25',
+        'size' => 'required|alpha',
+        'country' => 'required|min:5|max:45',
+    ]);
+
+    Animal::create([
+        'animal_name' => $request->animal_name, // Corrected field name
+        'size' => $request->size,
+        'country' => $request->country,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    return redirect()->route('admin.animals.index')->with('success', 'Animal created successfully');
+}
 
     /**
      * Display the specified resource.
@@ -57,24 +78,41 @@ class AnimalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Animal $animal)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        // Fetch all animals
+        $animals = Animal::all();
+        return view('admin.animals.edit', compact('animal', 'animals'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, Animal $animal)
+{
+    $user = Auth::user();
+    $user->authorizeRoles('admin');
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    $request->validate([
+        'animal_name' => 'required|min:4|max:25',
+        'size' => 'required|alpha',
+        'country' => 'required|min:5|max:45',
+    ]);
+
+    $animal->update([
+        'animal_name' => $request->animal_name, // Corrected field name
+        'size' => $request->size,
+        'country' => $request->country,
+        'updated_at' => now(),
+    ]);
+
+    return redirect()->route('admin.animals.show', $animal)->with('success', 'Animal has been updated successfully');
+}
+
+    public function destroy(Animal $animal)
     {
-        //
+        $animal->delete(); // This will delete the toy from the database.
+        $user= Auth::user();
+        $user->authorizeRoles('admin');
+        return to_route ('admin.animals.index', $animal)->with('success','Animal deleted successfully alongside the associated toys');
     }
 }

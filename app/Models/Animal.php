@@ -9,7 +9,7 @@ use App\Models\Toy;
 class Animal extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['animal_name', 'size', 'country'];
     public function toys(){
         return $this->hasMany(Toy::class);
     }
