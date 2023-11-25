@@ -48,6 +48,19 @@
                   
                     @endif
                 </div>                
+            <!-- Animal Section -->
+
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if(auth()->user()->hasRole('admin'))
+                        <x-nav-link :href="route('admin.animals.index')" :active="request()->routeIs('admin.toys.index')">
+                            {{ __('Animals') }}
+                        </x-nav-link>
+                    @elseif(auth()->user()->hasRole('user'))
+                        <x-nav-link :href="route('user.animals.index')" :active="request()->routeIs('user.toys.index')">
+                            {{ __('Animals') }}
+                        </x-nav-link>
+                    @endif
+                </div>  
           
 
             <!-- Settings Dropdown -->
