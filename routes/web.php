@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ToyController as AdminToyController;
 use App\Http\Controllers\User\ToyController as UserToyController;
+use App\Http\Controllers\Admin\AnimalController as AdminAnimalController;
+use App\Http\Controllers\User\AnimalController as UserAnimalController;
+
 
 
 
@@ -26,10 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
 
 
 Route::resource('/Admin/toys', AdminToyController::class)->middleware(['auth'])->names('admin.toys');
-
 Route::resource('/User/toys', UserToyController::class)->middleware(['auth'])->names('user.toys')->only(['index','show']);
+Route::resource('Admin/animals', AdminAnimalController::class)->middleware(['auth'])->names('admin.animals');
+Route::resource('User/animals', UserAnimalController::class)->middleware(['auth'])->names('user.animals')->only(['index','show']);
 require __DIR__.'/auth.php';

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use illuminate\Support\Facades\Auth;  
+use App\Models\Animal;
 class AnimalController extends Controller
 {
     /**
@@ -12,7 +13,12 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        $animals = Animal::all();
+
+        return view ('admin.animals.index')->with('animals', $animals);
     }
 
     /**
