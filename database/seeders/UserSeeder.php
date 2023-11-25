@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
 
         $admin = new User(); //adds a new user 
         $admin->name='Laura Hofmanova'; //defined admin
-        $admin->email= 'N00222003@sailiadt.ie';
+        $admin->email= 'N00222003@iadt.ie';
         $admin->password= Hash::make('password');
         $admin->save(); //saves this admin into the database/hardcodes it in
 
