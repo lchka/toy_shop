@@ -12,7 +12,8 @@ return new class extends Migration {
     {
         Schema::table('toys', function (Blueprint $table) {
             $table->unsignedBigInteger('animal_id');
-            $table->foreign('animal_id')->references('id')->on('animals')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('animal_id')->references('id')->on('animals')->onUpdate('cascade')->onDelete('cascade'); 
+            // had to change ondelete restrict to cascade so it deletes the rest of the toys as it wasnt matching the integriy.
         });
     }
 
