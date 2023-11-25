@@ -14,9 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-      Toy::factory()->count(50)->create(); //creates 50 instances of the database toys
+      // Toy::factory()->count(50)->create(); //creates 50 instances of the database toys
        $this->call(RoleSeeder::class); //seeds roles
        $this->call(UserSeeder::class);//seeds user with the hardcoded users
+       $this->call(AnimalSeeder::class);
 
        
     }
