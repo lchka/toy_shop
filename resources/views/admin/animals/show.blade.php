@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $animal->animal_name}} - Toys
+        <b>{{ ucfirst($animal->animal_name) }}</b> - Animals
         </h2>
     </x-slot>
     <div class="py-12">
