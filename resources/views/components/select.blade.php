@@ -4,7 +4,7 @@ in order to be able to pass a foreach into the edit, i must use a normal select 
 hence i am keeping this component here for the record. But it will only worl in create, whilst for edit i will use a class from css which then allows the old to work
 -->
 <div>
-    <select {!! $attributes->merge(['class' => 'border-red-300 dark:border-gray-700 dark:bg-pink-200 dark:text-gray-900
+    <select {!! $attributes->merge(['class' => 'border-red-300 dark:border-gray-700 dark:bg-purple-200 dark:text-gray-900
     focus:border-indigo-500 dark:focus:ring-purple-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md
     shadow-sm']) !!}>
 

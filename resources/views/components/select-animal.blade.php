@@ -1,12 +1,13 @@
-<!-- x-select-animal.blade.php -->
-
-<!-- this method can be used to pass array values for select size and colour, test when many to many is working -->
 @props(['animals', 'field' => '', 'selected' => null])
 
-<select {{ $attributes->merge(['class' => 'form-select']) }}>
+<select {{ $attributes->merge(['class' => 'border-red-300 dark:border-gray-700 dark:bg-purple-200 dark:text-gray-900
+    focus:border-indigo-500 dark:focus:ring-purple-600 focus:ring-indigo-500 dark:focus:ring-indigo-600
+    rounded-md shadow-sm form-select']) }}>
     <option value="">Select Animal</option> <!-- Placeholder or default option -->
     @foreach ($animals as $animal)
-        <option value="{{ $animal->id }}">{{ $animal->animal_name }}</option>
+        <option value="{{ $animal->id }}" {{ $selected == $animal->id ? 'selected' : '' }}>
+            {{ $animal->animal_name }} ({{ $animal->breed }})
+        </option>
     @endforeach
 </select>
 
