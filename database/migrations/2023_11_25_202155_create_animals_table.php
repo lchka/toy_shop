@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('animal_name');
             $table->string('size');
             $table->string('country');
+            $table->string('breed');
             $table->timestamps();
         });
     }

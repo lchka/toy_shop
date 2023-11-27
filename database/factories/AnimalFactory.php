@@ -18,6 +18,7 @@ class AnimalFactory extends Factory
             'animal_name'=>fake()->word,
             'size'=>fake()->randomElement(['small', 'medium', 'large']),//made into an enum like in the toy factory
             'country'=>fake()->word,
+            'breed'=>fake()->word,
         ];
     }
 }

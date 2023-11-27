@@ -16,7 +16,7 @@ class AnimalSeeder extends Seeder
     {
         Animal::factory()//creates the animal instances
         ->times(3)
-        ->hasToys(4)//magic method, the one to many relationshop was defined in animal. laravel does everything else
+        ->hasToys(8)//change this to 8, magic method, the one to many relationshop was defined in animal. laravel does everything else
         ->create();
     }
 }

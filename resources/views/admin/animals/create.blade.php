@@ -19,18 +19,27 @@
                     <div class="flex items-center">
                         <div class="flex-1 mr-4">
                             <!-- creates a create for the animal name input -->
-                            <x-text-input type="text" name="animal_name" field="animal_name" placeholder="Animal Name"
+                            <x-text-input style="margin-bottom:15px" type="text" name="animal_name" field="animal_name" placeholder="Animal Name"
                                 class="w-full" autocomplete="off" :value="@old('animal_name')">
                             </x-text-input>
-                            <!-- Using the component text-input, it pulls the design and displays it with the correct attributes -->
+                        
 
-                            <!-- Display validation error messages -->
                             @error('animal_name')
                             <span class="text-red-500">{{ $message }}</span>
                             @enderror
-                            <!-- Display error for other fields similarly -->
+                            
+                <!-- creates breeds input -->
+                            
+                            <x-text-input type="text" name="breed" field="breed" placeholder="Animal Breed"
+                                class="w-full" autocomplete="off" :value="@old('breed')">
+                            </x-text-input>
+                            @error('breed')
+                            <span class="text-red-500">{{ $message }}</span>
+                            @enderror
 
-                            <!-- creates a create for the size select -->
+                <!-- creates select input -->
+
+
                             <x-select-size type="select" name="size" id="size" field="size" class="w-full mt-6"
                                 :value="@old('size')">
                             </x-select-size>
@@ -38,9 +47,9 @@
                             @error('size')
                             <span class="text-red-500">{{ $message }}</span>
                             @enderror
-                            <!-- using the component select-size it pulls the design and displays it with the correct attributes -->
 
-                            <!-- creates a create for the company name text input -->
+                              <!-- creates country input -->
+
                             <x-text-input type="text" name="country" field="country" placeholder="Country of Origin"
                                 class="w-full mt-6" autocomplete="off" :value="@old('country')">
                             </x-text-input>
@@ -59,7 +68,7 @@
                     </div>
 
 
-                    <x-primary-button>Create Animal</x-primary-button>
+                    <x-primary-button style="margin-top:15px">Create Animal</x-primary-button>
 
                 </form>
             </div>

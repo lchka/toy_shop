@@ -21,7 +21,7 @@
             @forelse ($animals as $animal)
                 <x-card>
                   
-                        <a href="{{ route('admin.animals.show', $animal) }}" class="font-bold text-2xl">{{ $animal->animal_name }}</a>
+                        <a href="{{ route('admin.animals.show', $animal) }}" class="font-bold text-2xl">{{ $animal->breed }}</a>
             
                         <p class="mt-2 text-gray-700">
                             <span class="font-bold">ID:</span> {{ $animal->id }}

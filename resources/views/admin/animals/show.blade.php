@@ -20,7 +20,8 @@
                     <div class="bg-white border-b border-gray-200 shadow-xl sm:rounded-lg p-6 mb-6">
                         <h3 class="font-bold text-2xl mb-4">Animal Details</h3>
                         <p class="text-gray-700"><span class="font-bold">Id:</span> {{ $animal->id }} </p>
-                        <p class="text-gray-700"><span class="font-bold">Name:</span> {{ $animal->animal_name }} </p>
+                        <p class="text-gray-700"><span class="font-bold">Animal Name:</span> {{ $animal->animal_name }} </p>
+                        <p class="text-gray-700"><span class="font-bold">Animal Breed:</span> {{ $animal->breed }} </p>
                         <p class="text-gray-700"><span class="font-bold">Size:</span> {{ $animal->size }} </p>
                         <!-- Adjust this part based on the actual output for country -->
                         <p class="text-gray-700"><span class="font-bold">Country of Origin:</span> {{ $animal->country }} </p>

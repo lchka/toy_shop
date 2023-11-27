@@ -20,7 +20,8 @@
 
 <!-- creates a create for the name input -->
 
-                    <x-text-input
+                    <x-text-input 
+                        style="margin-bottom:15px"
                         type="text"
                         name="animal_name"
                         field="animal_name"
@@ -32,10 +33,17 @@
                     <span class="text-red-500">{{ $message }}</span>
                         @enderror
 
-                   <!-- using the component text-input it pulls the design and displays it with the correct attributes -->
-
-
-                        <!-- creates a create for the size select -->
+                        <x-text-input
+                        type="text"
+                        name="breed"
+                        field="breed"
+                        placeholder="Animal Breed"
+                        class="w-full"
+                        autocomplete="off"
+                        :value="@old('breed', $animal->breed)"></x-text-input>
+                        @error('breed')
+                    <span class="text-red-500">{{ $message }}</span>
+                        @enderror
 
                         <select
                         class="custom-select w-full mt-6"
