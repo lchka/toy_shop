@@ -4,9 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Animal>
- */
+//animal factory creates the datatypes
 class AnimalFactory extends Factory
 {
     /**

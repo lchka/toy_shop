@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    //creates the animal table, alongside the model it migrates the attributes
     public function up(): void
     {
         Schema::create('animals', function (Blueprint $table) {

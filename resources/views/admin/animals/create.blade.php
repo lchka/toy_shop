@@ -18,7 +18,7 @@
                 <form action="{{ route('admin.animals.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
-<!-- creates a create for the name input -->
+<!-- creates a create for the animal name input -->
 
                     <x-text-input
                         type="text"

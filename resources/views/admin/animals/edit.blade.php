@@ -1,7 +1,7 @@
 <title>Lili's Edit for Animal Entity</title>
 
 
-<!-- creates a template for the create section of the dashboard, once this is validated in factory it is pushed into the view and displays it in the index.-->
+<!-- creates a template for the create animal section of the dashboard, once this is validated in factory it is pushed into the view and displays it in the index.-->
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">

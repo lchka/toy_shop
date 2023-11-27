@@ -25,7 +25,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('toys', function (Blueprint $table) {
-            $table->dropForeign(['animal_id']);
+            $table->dropForeign(['animal_id']);//if table exists drop it. Has an isseu with this as the migrations would fully run and error on this, that was due it trying to drop a table that didn't exist. So down was commented out, ran without it, and finally seeded. Then it was commented back in and and migrated and seeded again. So we went around this issue
             $table->dropColumn('animal_id');
         });
     }

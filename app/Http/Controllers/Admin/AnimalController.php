@@ -14,9 +14,9 @@ class AnimalController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $user->authorizeRoles('admin');
+        $user->authorizeRoles('admin'); // authorizes the admin so be able to view this index. 
 
-        $animals = Animal::all();
+        $animals = Animal::all();//shows all animals in the database
 
         return view ('admin.animals.index')->with('animals', $animals);
     }
@@ -29,7 +29,7 @@ class AnimalController extends Controller
         $user= Auth::user();
         $user->authorizeRoles('admin');
 
-        $animals= Animal::all();
+        $animals= Animal::all(); //returns the create view, 
         return view('admin.animals.create')->with('animals',$animals);
     }
 
@@ -39,23 +39,23 @@ class AnimalController extends Controller
     public function store(Request $request)
 {
     $user = Auth::user();
-    $user->authorizeRoles('admin');
+    $user->authorizeRoles('admin');//authorises the admin user
 
     $request->validate([
         'animal_name' => 'required|min:4|max:25',
-        'size' => 'required|alpha',
+        'size' => 'required|alpha',//validation requirements for the animal entity
         'country' => 'required|min:5|max:45',
     ]);
 
     Animal::create([
-        'animal_name' => $request->animal_name, // Corrected field name
+        'animal_name' => $request->animal_name, // Get the name of the animal and display it
         'size' => $request->size,
         'country' => $request->country,
         'created_at' => now(),
         'updated_at' => now(),
     ]);
 
-    return redirect()->route('admin.animals.index')->with('success', 'Animal created successfully');
+    return redirect()->route('admin.animals.index')->with('success', 'Animal created successfully'); //success message
 }
 
     /**
@@ -67,7 +67,7 @@ class AnimalController extends Controller
         $user->authorizeRoles('admin');
 
         if(!Auth::id()) {
-            return abort(403);
+            return abort(403); //if there isnt an animal with that id then error 403
         }
 
         $toys= $animal->toys;
@@ -82,8 +82,8 @@ class AnimalController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        // Fetch all animals
-        $animals = Animal::all();
+        
+        $animals = Animal::all();//get all the animals
         return view('admin.animals.edit', compact('animal', 'animals'));
     }
 
@@ -96,10 +96,10 @@ class AnimalController extends Controller
         'animal_name' => 'required|min:4|max:25',
         'size' => 'required|alpha',
         'country' => 'required|min:5|max:45',
-    ]);
+    ]);//uses similar methods to validate like in the create
 
     $animal->update([
-        'animal_name' => $request->animal_name, // Corrected field name
+        'animal_name' => $request->animal_name, 
         'size' => $request->size,
         'country' => $request->country,
         'updated_at' => now(),

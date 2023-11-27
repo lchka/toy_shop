@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Toy;
 
+//creates a template for animal
 class Animal extends Model
 {
     use HasFactory;
