@@ -43,7 +43,8 @@
 
             @forelse ($toys as $toy)
             <x-card>
-                <a href="{{ route('admin.toys.index', $toy) }}" class="font-bold text-2xl"> {{ $toy->name }} </a>
+                <a href="{{ route('admin.toys.show', $toy->id) }}" class="font-bold text-2xl"> {{ $toy->name }} </a>
+                <!-- changed it so that when toy is clicked it will  bring u to the show instead of index -->
             </x-card>
 
             @empty

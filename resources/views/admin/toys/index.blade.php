@@ -31,6 +31,7 @@
                             <option value="name" {{ Request::input('column') == 'name' ? 'selected' : '' }}>Name</option>
                             <option value="colour" {{ Request::input('column') == 'colour' ? 'selected' : '' }}>Colour</option>
                             <option value="type" {{ Request::input('column') == 'type' ? 'selected' : '' }}>Type</option>
+                            <option value="animal_name" {{ Request::input('column') == 'animal_name' ? 'selected' : '' }}>Animal Name</option>
                             <option value="size" {{ Request::input('column') == 'size' ? 'selected' : '' }}>Size</option>
                         </select>
 
@@ -79,7 +80,7 @@
                                 <!-- displays the shown columns -->
 
                                 <p class="mt-2">
-                                    <h3 class="font-bold text-1x1"> <strong> Animal Name: </strong>
+                                    <h3 class="font-bold text-1x1"> <strong> For the Animal: </strong>
                                     {{$toy->animal->animal_name}} </h3>
                                     <p>Toy Colour: {{ucfirst ($toy->colour) }}</p>
                                     <p>Toy Size: {{ucfirst ($toy->size) }}</p>
