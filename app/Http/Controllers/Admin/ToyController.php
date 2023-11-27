@@ -37,11 +37,11 @@ class ToyController extends Controller
         }
     
         $user= Auth::user();
-        $user->authorizeRoles('admin');
+        $user->authorizeRoles('admin');// authorizes the admin so be able to view this index. 
 
         $toys = $toys->paginate(5);
     
-        return view('admin.toys.index')->with('toys',$toys);
+        return view('admin.toys.index')->with('toys',$toys);//bring to admin folder and uses that index
     }
     
     
@@ -50,10 +50,10 @@ class ToyController extends Controller
 
     public function show($id)
     {
-        $user= Auth::user();
-        $user->authorizeRoles('admin');
-        $toy = Toy::find($id); 
-        return view('admin.toys.show')->with('toy', $toy);
+        $user= Auth::user();//asks for the already authorised user
+        $user->authorizeRoles('admin');//authroises
+        $toy = Toy::find($id); //fins the specific toy by id
+        return view('admin.toys.show')->with('toy', $toy);//returns admin view
        
     }
 
@@ -61,11 +61,11 @@ class ToyController extends Controller
 
     public function create()
     {
-        $user= Auth::user();
+        $user= Auth::user();//asks for the already authorised user
         $user->authorizeRoles('admin');
 
         $animals= Animal::all();
-        return view('admin.toys.create')->with('animals',$animals);
+        return view('admin.toys.create')->with('animals',$animals); //returns the names if the animals, and pushes it into the create.
     }
     
     // stores the input placed into the boxes by validating that input put is corret and then passes it through
