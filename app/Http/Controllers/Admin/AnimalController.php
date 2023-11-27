@@ -57,7 +57,7 @@ class AnimalController extends Controller
         'updated_at' => now(),
     ]);
 
-    return redirect()->route('admin.animals.index')->with('success', 'Animal created successfully'); //success message
+    return redirect()->route('admin.animals.index')->with('success', 'Animal stored successfully'); //success message
 }
 
     /**
