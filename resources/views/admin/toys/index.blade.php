@@ -9,11 +9,7 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-           
-            <!-- in our function index we stated a query that includes paginations
-            this allows us to use lesser code and eliminate any overwriting of the $toys variable.
-             This is done by requesting the user to choose a column and in which direction it would like it displayed
-            this is then passed through the route (toys.index) and post the results based on the query stated there  -->
+
 
                                 <form method="GET" action="{{ route('admin.toys.index') }}">
                         @csrf
@@ -81,7 +77,7 @@
 
                                 <p class="mt-2">
                                     <h3 class="font-bold text-1x1"> <strong> For the Animal: </strong>
-                                    {{$toy->animal->animal_name}} </h3>
+                                    {{$toy->animal->breed}} </h3>
                                     <p>Toy Colour: {{ucfirst ($toy->colour) }}</p>
                                     <p>Toy Size: {{ucfirst ($toy->size) }}</p>
                                     <p>Company: {{ucfirst($toy->company_name)}}</p>

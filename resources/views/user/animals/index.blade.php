@@ -24,7 +24,10 @@
                             <span class="font-bold">ID:</span> {{ $animal->id }}
                         </p>
                         <p class="mt-2 text-gray-700">
-                            <span class="font-bold">Name:</span> {{ $animal->animal_name }}
+                            <span class="font-bold">Animal Name:</span> {{ $animal->animal_name }}
+                        </p>
+                        <p class="mt-2 text-gray-700">
+                            <span class="font-bold">Breed Name:</span> {{ $animal->breed }}
                         </p>
                         <p class="mt-2 text-gray-700">
                             <span class="font-bold">size:</span> {{ $animal->size }}

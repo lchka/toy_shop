@@ -48,12 +48,12 @@ class ToyController extends Controller
 
     // Authorize the admin to view this index
     $user = Auth::user();
-    $user->authorizeRoles('admin');
+    $user->authorizeRoles('user');
 
     // Paginate the results
     $toys = $toys->paginate(5);
 
-    return view('admin.toys.index')->with('toys', $toys); // Render the view with the paginated toys data
+    return view('user.toys.index')->with('toys', $toys); // Render the view with the paginated toys data
 }
 
     

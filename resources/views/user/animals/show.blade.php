@@ -11,6 +11,7 @@
             <h3 class="font-bold text-2xl mb-4">Animal Details</h3>
             <p class="text-gray-700"><span class="font-bold">Id:</span> {{ $animal->id }} </p>
             <p class="text-gray-700"><span class="font-bold">name:</span> {{ $animal->animal_name }} </p>
+            <p class="text-gray-700"><span class="font-bold">name:</span> {{ $animal->breed }} </p>
             <p class="text-gray-700"><span class="font-bold">Size:</span> {{ $animal->size }} </p>
             <!-- might break as size is an enum -->
             <p class="text-gray-700"><span class="font-bold">Country of Origin:</span> {{ $animal->country }} </p>

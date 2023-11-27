@@ -73,11 +73,17 @@
                                 <td style="vertical-align: center; font-style: italic;">{{ $toy->description }}</td>
                             </tr>
 
-                            <!-- displays the toy animal entity by pulling from the animal db-->
+                            <tr> 
+                                <td class="font-bold">Animal Name:</td>
+                                <td style="vertical-align: center; font-style: italic;">{{ $toy->animal->animal_name }}</td>
+                            </tr>
 
+                            <tr> 
+                                <td class="font-bold">Animal Breed:</td>
+                                <td style="vertical-align: center; font-style: italic;">{{ $toy->animal->breed }}</td>
+                            </tr>
 
-                            <td class="font-bold" style="padding-left: 25px;">Animal Name:
-                                    {{$toy->animal->animal_name}} </td>
+                       
                                  
 
                         </tbody>
