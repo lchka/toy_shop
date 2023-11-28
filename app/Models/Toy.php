@@ -20,8 +20,16 @@ class Toy extends Model
         'toy_image'
     ];
 
+    //foreign key to the animal class from toy, for one to many
     public function animal()
     {
         return $this->belongsTo(Animal::class);
+    }
+
+    //foreign key to the animal class from toy, for many to many
+
+    public function petstores()
+    {
+        return $this->belongsToMany(Petstore::class)->withTimestamps();
     }
 }
