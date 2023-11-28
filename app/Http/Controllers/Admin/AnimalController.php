@@ -45,7 +45,7 @@ class AnimalController extends Controller
         'animal_name' => 'required|min:4|max:25',
         'size' => 'required|alpha',//validation requirements for the animal entity
         'country' => 'required|min:5|max:45',
-        'breed' => 'required|min:5|max:45',
+        'breed' => '',//no requirements
     ]);
 
     Animal::create([

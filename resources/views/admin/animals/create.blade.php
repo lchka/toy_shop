@@ -30,7 +30,7 @@
                             
                 <!-- creates breeds input -->
                             
-                            <x-text-input type="text" name="breed" field="breed" placeholder="Animal Breed"
+                            <x-text-input type="text" name="breed" field="breed" placeholder="Animal Breed (Not Required)"
                                 class="w-full" autocomplete="off" :value="@old('breed')">
                             </x-text-input>
                             @error('breed')
