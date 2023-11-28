@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
        $this->call(RoleSeeder::class); //seeds roles
        $this->call(UserSeeder::class);//seeds user with the hardcoded users
        $this->call(AnimalSeeder::class);//seeds the animal seeder
+       $this->call(PetstoreSeeder::class);//seeds the petstore seeder
+
        //$this->call(ToysTableSeeder::class);
 
        
