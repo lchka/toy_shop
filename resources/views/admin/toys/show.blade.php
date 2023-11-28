@@ -1,4 +1,3 @@
-
 <x-app-layout>
     <!-- this is the main show page for my toy entity -->
     <x-slot name="header">
@@ -9,98 +8,82 @@
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-         <!-- used for making the succes alert appear, by saying if the session was successful then display this message -->
-
+            <!-- used for making the success alert appear, by saying if the session was successful then display this message -->
             <x-alert-success>
                 {{ session('success') }}
             </x-alert-success>
 
             <div class="bg-white shadow-xl sm:rounded-lg">
-                <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-xl sm:rounded-lg">
-                    <table class="table table-hover">
-                        <tbody>
-                            <tr>
+                <div class="flex flex-wrap">
 
-                                <!-- displays the toy name by pulling by toy id from the database -->
+                    <!-- Right section for the image -->
+                    <div class="w-full md:w-1/3 p-6">
+                        <h3 class="font-bold mb-4" style="font-size:28px;">{{ $toy->name }}</h3>
+                        <img src="{{ asset($toy->toy_image) }}" class="mx-auto" width="250" style="margin-left: -10px;" />
+                        <div style="display: flex; gap: 10px; margin-left: -10px;">
+                            <x-primary-button><a href="{{ route('admin.toys.edit', $toy) }}">Edit</a></x-primary-button>
+                            <form method="POST" action="{{ route('admin.toys.destroy', $toy) }}">
+                                @csrf
+                                @method('DELETE')
+                                <x-primary-button onclick="return confirm('Are you sure you want to delete?')">Delete</x-primary-button>
+                            </form>
+                        </div>
+                    </div>
 
-                            <tr>
-                                <td style="font-weight: bold; font-size:28px; padding-bottom:25px">{{ $toy->name }}</td>
-                            </tr>
+                    <!-- Left section for text content -->
+                    <div class="w-full md:w-2/3 p-6 border-b border-gray-200">
+                        <table class="table table-hover">
+                            <tbody>
+                                <!-- displays the toy attributes -->
+                                <tr>
+                                    <td class="font-bold">Colour:</td>
+                                    <td style="text-transform: capitalize; font-style: italic;">{{ $toy->colour }}</td>
+                                </tr>
 
-                                <!-- displays the toy image by pulling by toy id from the database -->
+                                <tr>
+                                    <td class="font-bold">Size:</td>
+                                    <td style="text-transform: capitalize; font-style: italic;">{{ $toy->size }}</td>
+                                </tr>
 
+                                <tr>
+                                    <td class="font-bold">Type:</td>
+                                    <td style="text-transform: capitalize; font-style: italic;">{{ $toy->type }}</td>
+                                </tr>
 
-                                <td rowspan="6">
-                                    <img src="{{ asset($toy->toy_image) }}" width="250"  />
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class="font-bold">Company:</td>
+                                    <td style="text-transform: capitalize; font-style: italic;">{{ $toy->company_name }}</td>
+                                </tr>
 
-                            <!-- displays the toy colour by pulling by toy id from the database -->
+                                <!-- displays the toy description -->
+                                <tr>
+                                    <td class="font-bold">Description:</td>
+                                    <td style="vertical-align: top; font-style: italic;">{{ $toy->description }}</td>
+                                </tr>
 
+                                <!-- displays the associated animal details -->
+                                <tr>
+                                    <td class="font-bold">Animal Name:</td>
+                                    <td style="vertical-align: center; font-style: italic;">{{ $toy->animal->animal_name }}</td>
+                                </tr>
 
-                            <tr>
-                                <td class="font-bold" style="padding-left: 25px;">Colour:</td>
-                                <td style="text-transform: capitalize; font-style: italic;">{{ $toy->colour }}</td>
-                            </tr>
+                                <tr>
+                                    <td class="font-bold">Animal Breed:</td>
+                                    <td style="vertical-align: center; font-style: italic;">{{ $toy->animal->breed }}</td>
+                                </tr>
 
-                            <!-- displays the toy size by pulling by toy id from the database -->
-
-                            <tr>
-                                <td class="font-bold" style="padding-left: 25px;">Size:</td>
-                                <td style="text-transform: capitalize; font-style: italic;">{{ $toy->size }}</td>
-                            </tr>
-
-                            <!-- displays the toy type by pulling by toy id from the database -->
-
-                            <tr>
-                                <td class="font-bold" style="padding-left: 25px;">Type:</td>
-                                <td style="text-transform: capitalize; font-style: italic;">{{ $toy->type }}</td>
-                            </tr>
-
-                            <!-- displays the company name by pulling by toy id from the database -->
-
-                            <tr>
-                                <td class="font-bold" style="padding-left: 25px;">Company:</td>
-                                <td style="text-transform: capitalize; font-style: italic;">{{ $toy->company_name }}</td>
-                            </tr>
-
-                            <!-- displays the toy description by pulling by toy id from the database -->
-
-
-                            <tr> 
-                                <td class="font-bold" style="padding-left: 25px; padding-right: 10px;">Description:</td>
-                                <td style="vertical-align: center; font-style: italic;">{{ $toy->description }}</td>
-                            </tr>
-
-                            <tr> 
-                                <td class="font-bold">Animal Name:</td>
-                                <td style="vertical-align: center; font-style: italic;">{{ $toy->animal->animal_name }}</td>
-                            </tr>
-
-                            <tr> 
-                                <td class="font-bold">Animal Breed:</td>
-                                <td style="vertical-align: center; font-style: italic;">{{ $toy->animal->breed }}</td>
-                            </tr>
-
-                       
-                                 
-
-                        </tbody>
-                    </table>
-
-                    <!-- Button to go to the edit page of the specific column -->
-                    <x-primary-button><a href="{{ route('admin.toys.edit', $toy) }}">Edit</a></x-primary-button>
-
-                    <!-- Delete button linking to the delete route must use the method delete and not get as its removing something from the database rather than retrieving it -->
-                    <form method="POST" action="{{ route('admin.toys.destroy', $toy) }}">
-                        @csrf
-                        @method('DELETE')
-                        <x-primary-button onclick="return confirm('Are you sure you want to delete?')">Delete</x-primary-button>
-                    </form>
-
+                                <!-- displays the associated petstores -->
+                                @foreach ($toy->petstores as $petstore)
+                                <tr>
+                                    <td class="font-bold">Located at:</td>
+                                    <td style="vertical-align: center; font-style: italic;">{{ $petstore->store_name }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    
                 </div>
-                
             </div>
         </div>
     </div>
