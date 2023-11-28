@@ -17,7 +17,10 @@ class PetstoreFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'store_name'=> $this->faker->word,
+            'location'=> $this->faker->realText,
+            'phone'=> $this->faker->phoneNumber,
+            'email'=> $this->faker->email,
         ];
     }
 }
