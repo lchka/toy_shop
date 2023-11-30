@@ -19,7 +19,7 @@
                     <div class="flex items-center">
                         <div class="flex-1 mr-4">
 
-                            <x-text-input style="margin-bottom:15px" type="text" name="store_name" field="store_name"
+                            <x-text-input type="text" name="store_name" field="store_name"
                                 placeholder="Store Name" class="w-full" autocomplete="off" :value="@old('store_name')">
                             </x-text-input>
                             @error('store_name')
@@ -33,7 +33,14 @@
                             <span class="text-red-500">{{ $message }}</span>
                             @enderror
 
-                            <x-textarea type="text" name="location" field="location" placeholder="Petstore Location"
+                            <x-text-input type="text" name="phone" field="phone" placeholder="Phone Number" class="w-full mt-6"
+                                autocomplete="off" :value="@old('phone')">
+                            </x-text-input>
+                            @error('phone')
+                            <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+
+                            <x-textarea style="margin-top:20px" type="text" name="location" field="location" placeholder="Petstore Location"
                                 class="w-full" autocomplete="off" :value="@old('location')">
                             </x-textarea>
                             @error('location')

@@ -15,9 +15,9 @@
         
 <!-- add a petstore button -->
 
-            <!-- <x-primary-button>
+            <x-primary-button>
                 <a href="{{ route('admin.petstores.create') }}">Add a petstore</a>
-            </x-primary-button> -->
+            </x-primary-button>
 
             @forelse ($petstores as $petstore)
                 <x-card>

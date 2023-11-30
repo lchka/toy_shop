@@ -34,11 +34,33 @@ class PetstoreController extends Controller
         return view('admin.petstores.create')->with('petstores',$petstores);
     }
 
-    
+    //makes the store function for the create of petstore
     public function store(Request $request)
-    {
-        
-    }
+{
+    $user = Auth::user();
+    $user->authorizeRoles('admin');
+
+    $request->validate([
+        'store_name' => 'required|min:4|max:25',
+        'email' => 'required|email',
+        'location' => 'required|min:25|max:125',
+        'phone' => 'required|regex:/^08\d{1,9}$/'
+    ]);
+
+    // Ensure the field names here match the names in your form
+    Petstore::create([
+        'store_name' => $request->store_name,
+        'email' => $request->email,
+        'location' => $request->location,
+        'phone' => $request->phone,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    return redirect()->route('admin.petstores.index')->with('success', 'Petstore stored successfully');
+}
+
+
 
  //shows each petstore
     public function show(Petstore $petstore)
