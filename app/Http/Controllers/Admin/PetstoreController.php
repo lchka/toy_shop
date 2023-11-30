@@ -82,7 +82,11 @@ class PetstoreController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        
+        $petstores = Petstore::all();//get all the petstores
+        return view('admin.petstores.edit', compact('petstore', 'petstores'));
     }
 
     /**
