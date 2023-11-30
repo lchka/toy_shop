@@ -34,21 +34,24 @@
                     <div class="w-full md:w-2/3 p-6 border-b border-gray-200">
                         <table class="table table-hover">
                             <tbody>
-                                <!-- displays the toy attributes -->
+                                <!-- displays the toy colour -->
                                 <tr>
                                     <td class="font-bold">Colour:</td>
                                     <td style="text-transform: capitalize; font-style: italic;">{{ $toy->colour }}</td>
                                 </tr>
+                                <!-- displays the toy size -->
 
                                 <tr>
                                     <td class="font-bold">Size:</td>
                                     <td style="text-transform: capitalize; font-style: italic;">{{ $toy->size }}</td>
                                 </tr>
+                                <!-- displays the toy type -->
 
                                 <tr>
                                     <td class="font-bold">Type:</td>
                                     <td style="text-transform: capitalize; font-style: italic;">{{ $toy->type }}</td>
                                 </tr>
+                                <!-- displays the toy company -->
 
                                 <tr>
                                     <td class="font-bold">Company:</td>
@@ -61,11 +64,12 @@
                                     <td style="vertical-align: top; font-style: italic;">{{ $toy->description }}</td>
                                 </tr>
 
-                                <!-- displays the associated animal details -->
+                                <!-- displays the associated animal name -->
                                 <tr>
                                     <td class="font-bold">Animal Name:</td>
                                     <td style="vertical-align: center; font-style: italic;">{{ $toy->animal->animal_name }}</td>
                                 </tr>
+                                <!-- displays the associated animal bred -->
 
                                 <tr>
                                     <td class="font-bold">Animal Breed:</td>
@@ -73,16 +77,14 @@
                                 </tr>
 
                                 <!-- displays the associated petstores -->
+                                <div class="font-bold">Petsore Location: </div>
                                 @foreach ($toy->petstores as $petstore)
-                                <tr>
-                                    <td class="font-bold">Located at:</td>
-                                    <td style="vertical-align: center; font-style: italic;">{{ $petstore->store_name }}</td>
-                                </tr>
+                                <a href="{{ route('admin.petstore.show', $petstore) }}"> <p> {{ $petstore->store_name}}</p></a>
                                 @endforeach
+                                
                             </tbody>
                         </table>
                     </div>
-                    
                 </div>
             </div>
         </div>

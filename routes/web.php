@@ -2,19 +2,16 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ToyController as AdminToyController;
+
+// toycontroller
+use App\Http\Controllers\Admin\ToyController as AdminToyController;//aliases are used in order to make sure laravel calls for the right controller/folder
 use App\Http\Controllers\User\ToyController as UserToyController;
+// animalcontroller
 use App\Http\Controllers\Admin\AnimalController as AdminAnimalController;
 use App\Http\Controllers\User\AnimalController as UserAnimalController;
-
-
-
-
-// this is used to route to all the possible view variations made with the toycontroller
-
-// Route::resource('/toys',ToyController::class);
-
-// routes/web.php
+// petstorecontroller
+use app\Http\Controllers\Admin\PetstoreController as AdminPetstoreController;
+use app\Http\Controllers\User\PetstoreController as UserPetstoreController;
 
 
 Route::get('/', function () {
@@ -33,8 +30,12 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::resource('/Admin/toys', AdminToyController::class)->middleware(['auth'])->names('admin.toys');
-Route::resource('/User/toys', UserToyController::class)->middleware(['auth'])->names('user.toys')->only(['index','show']);
+Route::resource('Admin/toys', AdminToyController::class)->middleware(['auth'])->names('admin.toys');//deleted / before admin might break
+Route::resource('User/toys', UserToyController::class)->middleware(['auth'])->names('user.toys')->only(['index','show']);
 Route::resource('Admin/animals', AdminAnimalController::class)->middleware(['auth'])->names('admin.animals');
 Route::resource('User/animals', UserAnimalController::class)->middleware(['auth'])->names('user.animals')->only(['index','show']);
+Route::resource('Admin/petstores', AdminPetstoreController::class)->middleware(['auth'])->names('admin.petstores');
+Route::resource('User/petstores', UserPetstoreController::class)->middleware(['auth'])->names('user.petstores')->only(['index','show']);
+
+
 require __DIR__.'/auth.php';
