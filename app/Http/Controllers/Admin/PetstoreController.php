@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use illuminate\Support\Facades\Auth;  
 use App\Models\Petstore;
+use App\Models\Animal;
+
 
 class PetstoreController extends Controller
 {
@@ -25,7 +27,7 @@ class PetstoreController extends Controller
     
     public function create()
     {
-        //
+       
     }
 
     

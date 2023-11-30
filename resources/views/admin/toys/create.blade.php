@@ -35,14 +35,9 @@
                     <span class="text-red-500">{{ $message }}</span>
                     @enderror
 
-                    <!-- using the component text-input it pulls the design and displays it with the correct attributes -->
-
-                    <!-- creates a create for the colour select -->
-
 
                     <x-select type="select" name="colour" id="colour" field="colour" class="w-full mt-6"
                         :value="@old('colour')"></x-select>
-
                     @error('colour')
                     <span class="text-red-500">{{ $message }}</span>
                     @enderror
@@ -52,7 +47,6 @@
 
                     <x-select-size type="select" name="size" id="size" field="size" class="w-full mt-6"
                         :value="@old('size')"></x-select-size>
-
                     @error('size')
                     <span class="text-red-500">{{ $message }}</span>
                     @enderror
@@ -63,22 +57,26 @@
                     <x-text-input type="text" name="company_name" field="company_name" placeholder="Company Name"
                         class="w-full mt-6" autocomplete="off" :value="@old('company_name')">
                     </x-text-input>
-
                     @error('type')
                     <span class="text-red-500">{{ $message }}</span>
                     @enderror
 
                     <!-- creates a create for the animal name textarea -->
 
-
                     <div class="mt-6">
                         <x-select-animal name="animal_id" :animals="$animals" :selected="old('animal_id')" />
                     </div>
-
                     @error('animal_id')
                     <span class="text-red-500">{{ $message }}</span>
                     @enderror
 
+                    <div class="mt-6">
+                        <label for="petstores"> <strong>Petstores</strong><br></label>
+                        @foreach ($petstores as $petstore)
+                        <input type="checkbox", value="{{$petstore->id}}" name="petstores[]"> {{$petstore->store_name}}</input>
+                        @endforeach
+                    </div>
+                    
 
                     <!-- creates a create for the description textarea -->
                     <x-textarea type="text" name="description" rows="10" field="description"
@@ -87,7 +85,7 @@
                     <span class="text-red-500">{{ $message }}</span>
                     @enderror
 
-                    <!-- using the component textarea it pulls the design and displays it with the correct attributes -->
+                
 
 
                     <!-- creates a create for the image file input -->
