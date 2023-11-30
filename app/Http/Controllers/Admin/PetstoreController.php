@@ -36,7 +36,7 @@ class PetstoreController extends Controller
 
     //makes the store function for the create of petstore
     public function store(Request $request)
-    {
+    { 
         $user = Auth::user();
         $user->authorizeRoles('admin');
 

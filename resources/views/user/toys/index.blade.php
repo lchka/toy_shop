@@ -10,10 +10,6 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <!-- in our function index we stated a query that includes paginations
-            this allows us to use lesser code and eliminate any overwriting of the $toys variable.
-             This is done by requesting the user to choose a column and in which direction it would like it displayed
-            this is then passed through the route (toys.index) and post the results based on the query stated there  -->
 
             <form method="GET" action="{{ route('user.toys.index') }}">
                 @csrf
@@ -29,11 +25,13 @@
                     <option value="" {{ Request::input('column')=='' ? 'selected' : '' }}>Select Column</option>
                     <option value="company_name" {{ Request::input('column')=='company_name' ? 'selected' : '' }}>
                         Company Name</option>
-                    <option value="name" {{ Request::input('column')=='name' ? 'selected' : '' }}>Name</option>
+                    <option value="name" {{ Request::input('column')=='name' ? 'selected' : '' }}>Title</option>
                     <option value="colour" {{ Request::input('column')=='colour' ? 'selected' : '' }}>Colour</option>
                     <option value="type" {{ Request::input('column')=='type' ? 'selected' : '' }}>Type</option>
-                    <option value="animal_name" {{ Request::input('column')=='animal_name' ? 'selected' : '' }}>Animal Name</option>
-                        <option value="breed" {{ Request::input('column')=='breed' ? 'selected' : '' }}>Animal Breed</option>
+                    <option value="animal_name" {{ Request::input('column')=='animal_name' ? 'selected' : '' }}>Animal
+                        Name</option>
+                    <option value="breed" {{ Request::input('column')=='breed' ? 'selected' : '' }}>Animal
+                        Breed</option>
                     <option value="size" {{ Request::input('column')=='size' ? 'selected' : '' }}>Size</option>
                 </select>
 
@@ -56,7 +54,7 @@
 
 
             <!-- used for making the succes alert appear, by saying if the session was successful then display this message -->
-
+           
             <x-alert-success>
                 {{ session('success') }}
             </x-alert-success>
@@ -82,8 +80,8 @@
                 <!-- displays the shown columns -->
 
                 <p class="mt-2">
-                <h3 class="font-bold text-1x1"> <strong> Animal Name: </strong>
-                    {{$toy->animal->animal_name}} </h3>
+                <h3 class="font-bold text-1x1"> <strong> For the Animal: </strong>
+                    {{$toy->animal->breed}} </h3>
                 <p>Toy Colour: {{ucfirst ($toy->colour) }}</p>
                 <p>Toy Size: {{ucfirst ($toy->size) }}</p>
                 <p>Company: {{ucfirst($toy->company_name)}}</p>

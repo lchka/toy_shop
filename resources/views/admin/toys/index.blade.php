@@ -30,7 +30,7 @@
                     <option value="type" {{ Request::input('column')=='type' ? 'selected' : '' }}>Type</option>
                     <option value="animal_name" {{ Request::input('column')=='animal_name' ? 'selected' : '' }}>Animal
                         Name</option>
-                        <option value="breed" {{ Request::input('column')=='breed' ? 'selected' : '' }}>Animal
+                    <option value="breed" {{ Request::input('column')=='breed' ? 'selected' : '' }}>Animal
                         Breed</option>
                     <option value="size" {{ Request::input('column')=='size' ? 'selected' : '' }}>Size</option>
                 </select>
@@ -54,7 +54,9 @@
 
 
             <!-- used for making the succes alert appear, by saying if the session was successful then display this message -->
-
+            <x-primary-button>
+                <a href="{{ route('admin.toys.create') }}">Add a toy</a>
+            </x-primary-button>
             <x-alert-success>
                 {{ session('success') }}
             </x-alert-success>

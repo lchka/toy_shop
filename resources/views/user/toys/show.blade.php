@@ -65,11 +65,9 @@
                                 </tr>
 
                                 <!-- displays the associated petstores -->
+                                <div class="font-bold">Petsore Location: </div>
                                 @foreach ($toy->petstores as $petstore)
-                                <tr>
-                                    <td class="font-bold">Located at:</td>
-                                    <td style="vertical-align: center; font-style: italic;">{{ $petstore->store_name }}</td>
-                                </tr>
+                                <a href="{{ route('user.petstores.show', $petstore) }}"> <p> {{ $petstore->store_name}}</p></a>
                                 @endforeach
                             </tbody>
                         </table>
