@@ -133,12 +133,17 @@ class ToyController extends Controller
     // the function edit allows the user to edit the preset column in the database, by accessing it through its unique id. Displaying the edit page
 
     public function edit(Toy $toy)
-    {
-        $user = Auth::user();
-        $user->authorizeRoles('admin');
-        $animals = Animal::all();
-        return view('admin.toys.edit')->with('toy', $toy)->with('animals', $animals);
-    }
+{
+    $user = Auth::user();
+    $user->authorizeRoles('admin');
+    $animals = Animal::all();
+    $petstores = Petstore::all(); // Retrieve pet stores
+    return view('admin.toys.edit', [
+        'toy' => $toy,
+        'animals' => $animals,
+        'petstores' => $petstores, // Pass $petstores to the view
+    ]);
+}
 
     //the function works similarly to the function validate, where it goes through the same process of validation and then storing if the validation is successful
     public function update(Request $request, Toy $toy)
@@ -151,6 +156,7 @@ class ToyController extends Controller
             'company_name' => 'required | min:5 | max:45',
             'description' => 'required | max:2058',
             'animal_id' => 'required',
+            'petstores' => ['required', 'exists:petstores,id'],
             'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
 
 
@@ -176,12 +182,14 @@ class ToyController extends Controller
             'type' => $request->type,
             'company_name' => $request->company_name,
             'animal_id' => $request->animal_id,
+            'petstore' => $request->petstore,
             'toy_image' => $toy_image_name,
             'created_at' => now(),
             'updated_at' => now()
         ]);
         $user = Auth::user();
         $user->authorizeRoles('admin');
+        $toy->petstores()->attach($request->petstores);
         return to_route('admin.toys.show', $toy)->with('success', 'Toy has been updated successfully');
     }
 

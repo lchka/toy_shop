@@ -94,6 +94,18 @@
                     <span class="text-red-500">{{ $message }}</span>
                     @enderror
 
+                    <div class="mt-6">
+                        <label for="petstores"><strong>Petstores</strong><br></label>
+                        @foreach ($petstores as $petstore)
+                        <div>
+                            <input type="checkbox" value="{{ $petstore->id }}" name="petstores[]"
+                                @if(is_array(old('petstores')) && in_array($petstore->id, old('petstores'))) checked
+                            @endif>
+                            <label>{{ $petstore->store_name }}</label>
+                        </div>
+                        @endforeach
+                    </div>
+
 
                     <!-- the image is pulled from the folder just no displayed as a file, this line of code proves that by testing the image depending on the toy id -->
 
