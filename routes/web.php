@@ -10,8 +10,8 @@ use App\Http\Controllers\User\ToyController as UserToyController;
 use App\Http\Controllers\Admin\AnimalController as AdminAnimalController;
 use App\Http\Controllers\User\AnimalController as UserAnimalController;
 // petstorecontroller
-use app\Http\Controllers\Admin\PetstoreController as AdminPetstoreController;
-use app\Http\Controllers\User\PetstoreController as UserPetstoreController;
+use App\Http\Controllers\Admin\PetstoreController as AdminPetstoreController;
+use App\Http\Controllers\User\PetstoreController as UserPetstoreController;
 
 
 Route::get('/', function () {

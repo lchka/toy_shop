@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use illuminate\Support\Facades\Auth;  
 use App\Models\Petstore;
+
 class PetstoreController extends Controller
 {
+
+    //shows all petstores as index 
  
     public function index()
     {
@@ -19,9 +22,7 @@ class PetstoreController extends Controller
         return view ('admin.petstores.index')->with('petstores', $petstores);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         //

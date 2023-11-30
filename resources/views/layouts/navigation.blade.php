@@ -6,18 +6,11 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-
                         <!-- this is where your little icon goes -->
-
                         <img src="{{ asset('images/shiba.png') }}" alt="Image Description" width="45">
-
-
                         <!-- the litte shiba icon  -->
                     </a>
                 </div>
-
-
-
                 <!-- New Navigation Links -->
                 <div class=" hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -44,11 +37,9 @@
                     <x-nav-link :href="route('admin.toys.create')" :active="request()->routeIs('admin.toys.create')">
                         {{ __('Create Toy') }}
                     </x-nav-link>
-
                     @endif
                 </div>
                 <!-- Animal Section -->
-
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
                     <x-nav-link :href="route('admin.animals.index')" :active="request()->routeIs('admin.toys.index')">
@@ -60,8 +51,18 @@
                     </x-nav-link>
                     @endif
                 </div>
-
-
+                <!-- Petstore Section -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if(auth()->user()->hasRole('admin'))
+                    <x-nav-link :href="route('admin.petstores.index')" :active="request()->routeIs('admin.toys.index')">
+                        {{ __('Petstores') }}
+                    </x-nav-link>
+                    @elseif(auth()->user()->hasRole('user'))
+                    <x-nav-link :href="route('user.petstores.index')" :active="request()->routeIs('user.toys.index')">
+                        {{ __('Petstores') }}
+                    </x-nav-link>
+                    @endif
+                </div>
                 <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="48">

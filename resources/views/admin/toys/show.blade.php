@@ -79,7 +79,7 @@
                                 <!-- displays the associated petstores -->
                                 <div class="font-bold">Petsore Location: </div>
                                 @foreach ($toy->petstores as $petstore)
-                                <a href="{{ route('admin.petstore.show', $petstore) }}"> <p> {{ $petstore->store_name}}</p></a>
+                                <a href="{{ route('admin.petstores.show', $petstore) }}"> <p> {{ $petstore->store_name}}</p></a>
                                 @endforeach
                                 
                             </tbody>
