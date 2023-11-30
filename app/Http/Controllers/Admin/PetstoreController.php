@@ -24,19 +24,23 @@ class PetstoreController extends Controller
         return view ('admin.petstores.index')->with('petstores', $petstores);
     }
 
-    
+    //makes a create template
     public function create()
     {
-       
+        $user= Auth::user();
+        $user->authorizeRoles('admin');
+
+        $petstores= Petstore::all(); //returns the create view, 
+        return view('admin.petstores.create')->with('petstores',$petstores);
     }
 
     
     public function store(Request $request)
     {
-        //
+        
     }
 
- 
+ //shows each petstore
     public function show(Petstore $petstore)
     {
         $user = Auth::user();

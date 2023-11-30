@@ -89,39 +89,29 @@ class ToyController extends Controller
     // stores the input placed into the boxes by validating that input put is corret and then passes it through
     public function store(Request $request)
     {
-
         $user = Auth::user();
         $user->authorizeRoles('admin');
-
-
+    
         $request->validate([
-            'name' => 'required | min:4 | max:25 ', //min is used for the smallest amount alloiwed in the input box and max for the largest
-            'colour' => 'required | alpha', //alpha is used to validate that the string doesn't contain numbers
-            'size' => 'required | alpha',
-            'type' => 'required | min:4 | max:25 | alpha',
-            'company_name' => 'required | min:5 | max:45',
-            'description' => 'required | max:2058',
+            'name' => 'required|min:4|max:25',
+            'colour' => 'required|alpha',
+            'size' => 'required|alpha',
+            'type' => 'required|min:4|max:25|alpha',
+            'company_name' => 'required|min:5|max:45',
+            'description' => 'required|max:2058',
             'animal_id' => 'required',
-            'toy_image' => 'required | image | max:2058 | mimes:jpeg, png, jpg, gif'
-            //image validation is validating that input is placed, mimes is used to validate the type of file placed
-
+            'petstores' => ['required', 'exists:petstores,id'],
+            'toy_image' => 'required|image|max:2058|mimes:jpeg,png,jpg,gif'
         ]);
-
-        //this creates a unique name for every singel file placed into the file input box, and generates the name by time stamp
-
+    
         if ($request->hasFile('toy_image')) {
             $image = $request->file('toy_image');
             $imageName = time() . '.' . $image->extension();
-            //which is then stored (placed) into the public folder toys
             $image->storeAs('public/toys', $imageName);
             $toy_image_name = 'storage/toys/' . $imageName;
         }
-
-
-
-        // this create is for taking the input placed into these individual create form, which is then pushed into the Toy model, then into the database and then placed in the view of index and show, then show cases the alert message
-
-        Toy::create([
+    
+        $toy = Toy::create([
             'name' => $request->name,
             'description' => $request->description,
             'colour' => $request->colour,
@@ -129,14 +119,15 @@ class ToyController extends Controller
             'type' => $request->type,
             'company_name' => $request->company_name,
             'animal_id' => $request->animal_id,
+            'petstore' => $request->petstore,
             'toy_image' => $toy_image_name,
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
-        //then return to the view index if storing is successful, with a message
-
-        return to_route('admin.toys.index')->with('success', 'Toy created successfully');
+    
+        $toy->petstores()->attach($request->petstores);
+    
+        return redirect()->route('admin.toys.index')->with('success', 'Toy created successfully');
     }
 
     // the function edit allows the user to edit the preset column in the database, by accessing it through its unique id. Displaying the edit page
