@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use illuminate\Support\Facades\Auth;  
+use App\Models\Petstore;
 class PetstoreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+ 
     public function index()
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin'); // authorizes the admin so be able to view this index. 
+
+        $petstores = Petstore::all();//shows all petstores in the database
+
+        return view ('admin.petstores.index')->with('petstores', $petstores);
     }
 
     /**
@@ -23,20 +27,25 @@ class PetstoreController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+ 
+    public function show(Petstore $petstore)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        if(!Auth::id()) {
+            return abort(403); //if there isnt an petstore with that id then error 403
+        }
+
+        $toys= $petstore->toys;
+
+        return view('admin.petstores.show', compact('petstore','toys'));
     }
 
     /**

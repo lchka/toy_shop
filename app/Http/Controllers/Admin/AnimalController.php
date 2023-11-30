@@ -8,9 +8,7 @@ use illuminate\Support\Facades\Auth;
 use App\Models\Animal;
 class AnimalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         $user = Auth::user();
