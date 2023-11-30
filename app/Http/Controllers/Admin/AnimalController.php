@@ -113,6 +113,8 @@ class AnimalController extends Controller
 
     public function destroy(Animal $animal)
     {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
         $animal->delete(); // This will delete the toy from the database.
         $user= Auth::user();
         $user->authorizeRoles('admin');

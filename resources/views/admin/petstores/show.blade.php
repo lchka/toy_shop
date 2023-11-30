@@ -15,6 +15,14 @@
                 <p class="text-gray-700"><span class="font-bold">Name:</span> {{ $petstore->store_name }}</p>
                 <p class="text-gray-700"><span class="font-bold">Phone:</span> {{ $petstore->phone }}</p>
                 <p class="text-gray-700"><span class="font-bold">Email:</span> {{ $petstore->email }}</p>
+
+                <x-primary-button><a href="{{ route('admin.petstores.edit', $petstore) }}">Edit</a></x-primary-button>
+                <form method="POST" action="{{ route('admin.petstores.destroy', $petstore) }}">
+                    @csrf
+                    @method('DELETE')
+                    <x-primary-button
+                        onclick="return confirm('Are you sure you want to delete?')">Delete</x-primary-button>
+                </form>
             </div>
 
             <!-- Display toys for the petstore -->
@@ -22,14 +30,14 @@
                 <h3 class="font-bold text-2xl mb-4">Toys by {{ $petstore->store_name }}</h3>
 
                 @forelse ($toys as $toy)
-                    <x-card>
-                        <div class="font-bold text-2xl">
-                            <a href="{{ route('admin.toys.show', $toy) }}">{{ $toy->name }}</a>
-                        </div>
-                        <!-- Include other toy details if needed -->
-                    </x-card>
+                <x-card>
+                    <div class="font-bold text-2xl">
+                        <a href="{{ route('admin.toys.show', $toy) }}">{{ $toy->name }}</a>
+                    </div>
+                    <!-- Include other toy details if needed -->
+                </x-card>
                 @empty
-                    <p>No toys for this petstore</p>
+                <p>No toys for this petstore</p>
                 @endforelse
             </div>
 
