@@ -54,9 +54,15 @@ class User extends Authenticatable
             return null !== $this->roles()->whereIn('name', $roles)->first();
         }
 
+        public function assignRole(string $roleName): void
+        {
+            $role = Role::where('name', $roleName)->first();
+    
+            if ($role) {
+                $this->syncRoles([$role]);
+            }
 
-
-
+        }
     /**
      * The attributes that should be hidden for serialization.
      *
