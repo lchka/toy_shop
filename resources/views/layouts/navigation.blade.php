@@ -25,11 +25,7 @@
                     @elseif(auth()->user()->hasRole('user'))
                     <x-nav-link :href="route('user.toys.index')" :active="request()->routeIs('user.toys.index')">
                         {{ __('Toys') }}
-                    </x-nav-link>
-                    @else
-                    <x-nav-link :href="route('user.toys.index')" :active="request()->routeIs('user.toys.index')">
-                        {{ __('Toys') }}
-                    </x-nav-link>
+                    </x-nav-link>     
                     @endif
                 </div>
 
