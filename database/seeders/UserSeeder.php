@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
         $admin->roles()->attach($role_admin);
 
         $user = new User();
-        $user->name = 'Krys Piwo'; //defined user
+        $user->name = 'Krys Piwo (do not promote)'; //defined user
         $user->email= 'krys@iadt.ie';
         $user->password= Hash::make('password');
         $user->save(); //saves this user into the database/hardcodes it in
