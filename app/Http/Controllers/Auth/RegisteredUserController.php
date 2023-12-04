@@ -52,5 +52,32 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+
+
+    }
+    public function showPromoteForm(): View   //creates the view for the form so that the admin can choose who to promote
+    {
+        // Retrieve ordinary users who are not admins from the database
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'admin');
+        })->get(['id', 'name']);
+
+        return view('admin.promote', ['users' => $users]);
+    }
+
+    public function promoteUser(Request $request): RedirectResponse //this is the code that changed the ordinary user to admin
+    {
+        $request->validate([
+            'user_id' => ['required', 'exists:users,id'],//makes sure that we have to choose a user in order for it to process
+        ]);
+
+        // Find the selected user
+        $user = User::findOrFail($request->user_id);//user must exist
+
+        // Attach the 'admin' role to the selected user
+        $role = Role::where('name', 'admin')->first();//where the name is user role change to admin
+        $user->roles()->sync($role);//sync with the rest of the project
+
+        return redirect()->route('admin.toys.index')->with('success', 'User promoted to admin successfully!');//redirected
     }
 }

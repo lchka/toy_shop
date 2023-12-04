@@ -25,7 +25,7 @@
                     @elseif(auth()->user()->hasRole('user'))
                     <x-nav-link :href="route('user.toys.index')" :active="request()->routeIs('user.toys.index')">
                         {{ __('Toys') }}
-                    </x-nav-link>     
+                    </x-nav-link>
                     @endif
                 </div>
 
@@ -54,6 +54,15 @@
                     </x-nav-link>
                     @endif
                 </div>
+                <!-- shows the promote form but only for admins -->
+                @if(auth()->user()->hasRole('admin'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('admin.showPromoteForm')"
+                        :active="request()->routeIs('admin.showPromoteForm')">
+                        {{ __('Promote User') }}
+                    </x-nav-link>
+                </div>
+                @endif
 
                 <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
