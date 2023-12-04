@@ -91,7 +91,7 @@ class ToyController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-    
+
         $request->validate([
             'name' => 'required|min:4|max:25',
             'colour' => 'required|alpha',
@@ -103,14 +103,14 @@ class ToyController extends Controller
             'petstores' => ['required', 'exists:petstores,id'],
             'toy_image' => 'required|image|max:2058|mimes:jpeg,png,jpg,gif'
         ]);
-    
+
         if ($request->hasFile('toy_image')) {
             $image = $request->file('toy_image');
             $imageName = time() . '.' . $image->extension();
             $image->storeAs('public/toys', $imageName);
             $toy_image_name = 'storage/toys/' . $imageName;
         }
-    
+
         $toy = Toy::create([
             'name' => $request->name,
             'description' => $request->description,
@@ -124,26 +124,26 @@ class ToyController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
-    
+
         $toy->petstores()->attach($request->petstores);
-    
+
         return redirect()->route('admin.toys.index')->with('success', 'Toy created successfully');
     }
 
     // the function edit allows the user to edit the preset column in the database, by accessing it through its unique id. Displaying the edit page
 
     public function edit(Toy $toy)
-{
-    $user = Auth::user();
-    $user->authorizeRoles('admin');
-    $animals = Animal::all();
-    $petstores = Petstore::all(); // Retrieve pet stores
-    return view('admin.toys.edit', [
-        'toy' => $toy,
-        'animals' => $animals,
-        'petstores' => $petstores, // Pass $petstores to the view
-    ]);
-}
+    {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        $animals = Animal::all();
+        $petstores = Petstore::all(); // Retrieve pet stores
+        return view('admin.toys.edit', [
+            'toy' => $toy,
+            'animals' => $animals,
+            'petstores' => $petstores, // Pass $petstores to the view
+        ]);
+    }
 
     //the function works similarly to the function validate, where it goes through the same process of validation and then storing if the validation is successful
     public function update(Request $request, Toy $toy)
@@ -197,9 +197,14 @@ class ToyController extends Controller
 
     public function destroy(Toy $toy)
     {
-        $toy->delete(); // This will delete the toy from the database.
+       
         $user = Auth::user();
         $user->authorizeRoles('admin');
+        // Detach relationships from pivot table (if it's a many-to-many relationship)
+        $toy->petstores()->detach(); // Assuming 'petstores' is the relationship method name
+
+        // Delete the toy once its relations have been detached
+        $toy->delete();
         return to_route('admin.toys.index', $toy)->with('success', 'Toy deleted successfully');
     }
 

@@ -131,7 +131,7 @@ class PetstoreController extends Controller
      
         $petstore->delete();
     
-        return redirect()->route('admin.petstores.index')->with('success', 'Petstore deleted successfully alongside the associated toys');
+        return redirect()->route('admin.petstores.index')->with('success', 'Petstore deleted successfully');
     }
     
 }

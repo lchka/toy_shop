@@ -86,15 +86,7 @@
                     <span class="text-red-500">{{ $message }}</span>
                     @enderror
 
-                    <div class="mt-6">
-                        <label for="petstores"><strong>Petstores</strong><br></label>
-                        @foreach ($petstores as $petstore)
-                        <div>
-                            <input type="checkbox" value="{{ $petstore->id }}" name="petstores[]">
-                            <label>{{ $petstore->store_name }}</label>
-                        </div>
-                        @endforeach
-                    </div>
+                    
 
 
                     <!-- creates a create for the image file input -->
