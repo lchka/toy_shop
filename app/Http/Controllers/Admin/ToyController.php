@@ -50,9 +50,12 @@ class ToyController extends Controller
             $toys->orderBy(function ($query) use ($column, $sortDirection) {
                 $query->select($column)->from('animals')->whereColumn('animals.id', 'toys.animal_id')->orderBy($column, $sortDirection);
             });
+            
         } else {
             $toys->orderBy('name', $sortDirection);
         }
+
+        
 
         $user = Auth::user();
         $user->authorizeRoles('admin');
