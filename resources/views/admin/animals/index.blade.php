@@ -18,10 +18,13 @@
                 <a href="{{ route('admin.animals.create') }}">Add a Animal</a>
             </x-primary-button>
 
-            @forelse ($animals as $animal)
+            @php
+            $itemNumber = ($animals->currentPage() - 1) * $animals->perPage() + 1;
+            @endphp
+            @forelse ($animals  as $index => $animal)
                 <x-card>
                   
-                        <a href="{{ route('admin.animals.show', $animal) }}" class="font-bold text-2xl">{{ $animal->animal_name }}</a>
+                <span class="font-bold text-2xl">{{ $itemNumber }}.</span><a href="{{ route('admin.animals.show', $animal) }}" class="font-bold text-2xl">{{ $animal->animal_name }}</a>
             
                         <p class="mt-2 text-gray-700">
                             <span class="font-bold">ID:</span> {{ $animal->id }}
@@ -41,10 +44,16 @@
                         </p>
             
                 </x-card>   
+                @php
+            $itemNumber++;
+            @endphp
             @empty
                 <p>No Animals</p>
             @endforelse
             
         </div>
+        <div class="pagination">
+                {{ $animals->appends(request()->except('page'))->links() }}
+            </div>
     </div>
 </x-app-layout>

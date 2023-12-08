@@ -16,6 +16,8 @@ class PetstoreController extends Controller
         $user->authorizeRoles('user'); // authorizes the user so be able to view this index. 
 
         $petstores = Petstore::all();//shows all petstores in the database
+        $petstores = Petstore::paginate(10);
+
 
         return view ('user.petstores.index')->with('petstores', $petstores);
     }

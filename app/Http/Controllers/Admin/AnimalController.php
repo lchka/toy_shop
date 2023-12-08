@@ -15,6 +15,8 @@ class AnimalController extends Controller
         $user->authorizeRoles('admin'); // authorizes the admin so be able to view this index. 
 
         $animals = Animal::all();//shows all animals in the database
+        $animals = Animal::paginate(10);
+
 
         return view ('admin.animals.index')->with('animals', $animals);
     }
