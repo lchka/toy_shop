@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('petstore_id');
             $table->unsignedBigInteger('toy_id');
 
-            $table->foreign('petstore_id')->references('id')->on('petstores')->onUpdate('cascade')->onDelete('cascade'); //restrict might need to be changed since it messes with the integrity
-            $table->foreign('toy_id')->references('id')->on('toys')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('petstore_id')->references('id')->on('petstores')->onUpdate('cascade')->onDelete('restrict'); //restrict might need to be changed since it messes with the integrity
+            $table->foreign('toy_id')->references('id')->on('toys')->onUpdate('cascade')->onDelete('restrict');
 
             $table->timestamps();
         });
