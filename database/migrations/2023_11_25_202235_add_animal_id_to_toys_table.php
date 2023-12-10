@@ -5,7 +5,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    //migration for adding id to the animal table, creating the foreign key by using references
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::table('toys', function (Blueprint $table) {
@@ -15,7 +17,10 @@ return new class extends Migration {
         });
     }
 
-      //when migrating again migrations get dropped and creates a new one
+    /**
+     * Reverse the migrations.
+     * @return void
+     */
 
     public function down(): void
     {

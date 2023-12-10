@@ -48,7 +48,7 @@ class PetstoreController extends Controller
             'phone' => 'required|regex:/^08\d{1,9}$/'
         ]);
 
-        // Ensure the field names here match the names in your form
+        // creates the atrributes
         Petstore::create([
             'store_name' => $request->store_name,
             'email' => $request->email,

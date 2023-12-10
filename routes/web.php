@@ -40,6 +40,7 @@ Route::resource('User/animals', UserAnimalController::class)->middleware(['auth'
 Route::resource('Admin/petstores', AdminPetstoreController::class)->middleware(['auth'])->names('admin.petstores');
 Route::resource('User/petstores', UserPetstoreController::class)->middleware(['auth'])->names('user.petstores')->only(['index', 'show']);
 
+
 // Route for showing the form to promote users to admins
 Route::get('admin/promote', [RegisteredUserController::class, 'showPromoteForm'])->middleware(['auth'])->name('admin.showPromoteForm');
 
